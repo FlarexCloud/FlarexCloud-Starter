@@ -45,17 +45,16 @@ terminal_mode() {
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "\033[1m${YELLOW}container@acidicnodes:$\033[0m"
     while true; do
-        read -p "\033[1m${YELLOW}container@acidicnodes:$\033[0m " cmd
+        read -p "container@acidicnodes:$ " cmd
         if [ "$cmd" == "exit" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            sleep 1
-            exit
+            exit 0
         else
             eval "$cmd"
-            sleep 0.1
-            echo "\033[1m${YELLOW}container@acidicnodes:$\033[0m "
+            sleep 0.2
+            echo "container@acidicnodes:$ "
         fi
     done
 }
