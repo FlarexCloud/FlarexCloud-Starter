@@ -31,14 +31,14 @@ LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 DEFAULT="\e[39m"
 
-FILE={{FILE}}
-REPO={{REPO}}
-BRANCH={{BRANCH}}
-MANAGER={{MANAGER}}
-TERMINAL={{TERMINAL_MODE}}
-AUTO_INSTALL={{AUTO_INSTALL}}
-AUTO_PULL={{AUTO_PULL}}
-LOGGER={{LOGGER}}
+FILE=$1
+REPO=$2
+BRANCH=$3
+MANAGER=$4
+TERMINAL=$5
+AUTO_INSTALL=$6
+AUTO_PULL=$7
+LOGGER=$8
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
