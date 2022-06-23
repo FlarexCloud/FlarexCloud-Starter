@@ -128,7 +128,7 @@ elif [ ! -z "$REPO" ] && [ ! -z "$BRANCH" ]; then
     read confirmation
     case $confirmation in
         [Yy]* )
-            rm -rf ..?* .[!.]* *
+            rm -v !("starter")
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
             echo -e "-| > Cloning '${LIGHT_GREEN}${BRANCH}${NORMAL}' from '${LIGHT_GREEN}${REPO}${NORMAL}'\e[24m"
