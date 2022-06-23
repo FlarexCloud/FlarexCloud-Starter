@@ -70,16 +70,14 @@ if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
     case $confirmation in
-        """
-        2 )
-            MANAGER="yarn"
-            echo "Using yarn"
-            ;;
-        3 )
-            MANAGER="pnpm"
-            echo "Using pnpm"
-            ;;
-        """
+        # 2 )
+        #     MANAGER="yarn"
+        #     echo "Using yarn"
+        #     ;;
+        # 3 )
+        #     MANAGER="pnpm"
+        #     echo "Using pnpm"
+        #     ;;
         * )
             MANAGER="npm"
             echo "*| > Using '${LIGHT_GREEN}NPM${NORMAL}'..."

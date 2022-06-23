@@ -50,6 +50,8 @@ terminal_mode() {
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+            echo
             break
         else
             eval "$CMD"
@@ -74,7 +76,9 @@ fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "-| > ${BOLD}Terminal mode have been disabled!${NORMAL}"
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}";
+echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo;
 
 cd /home/container
 
