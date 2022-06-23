@@ -87,6 +87,7 @@ if [ "$MANAGER" == "ask" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo "*| > Using '${LIGHT_GREEN}NPM${NORMAL}'..."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            sleep 1.5
             ;;
     esac
 fi
