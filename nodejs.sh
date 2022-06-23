@@ -67,8 +67,8 @@ echo -e "| > Auto Pull: '${UNDERLINE}${AUTO_PULL}\e[24m'"
 echo -e "| > Logs: '${UNDERLINE}${LOGGER}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
-# wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/start.sh
-# bash /tmp/start "$REPO" "$BRANCH" $SHELL $AUTO_PULL
+wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/start.sh
+bash /tmp/start "$REPO" "$BRANCH" $SHELL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
