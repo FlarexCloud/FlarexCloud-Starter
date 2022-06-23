@@ -62,12 +62,12 @@ bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo "-| > Please choose your favourite package manager: [Enter the '${UNDERLINE}integer\e[24m']"
-    echo
+    echo "-| > Please choose your favourite package manager: [Enter the integer]"
+    echo "|"
     echo -e "| > 1) npm [default]"
     # echo "2) yarn"
     # echo "3) pnpm"
-    echo
+    echo "|"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
@@ -84,8 +84,9 @@ if [ "$MANAGER" == "ask" ]; then
             MANAGER="npm"
             echo
             echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+            echo
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo "*| > Using '${LIGHT_GREEN}NPM${NORMAL}'..."
+            echo "*| > Using NPM${NORMAL}..."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             sleep 1.5
             ;;
@@ -105,7 +106,16 @@ if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
                 echo "*| > Installing/Upgrading from package.json..."
                 eval $MANAGER "install"
                 ;;
-            * ) echo "*| > Skipped!";;
+            * ) 
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo "*| > Skipped!"
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo;;
         esac
     else
         eval $MANAGER "install"
@@ -118,6 +128,7 @@ echo -e "${LIGHT_MAGENTA}*******************************************************
 echo -e "-| > Starting Application/Bot..."
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo
+echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 
 CMD="node $FILE"
 
