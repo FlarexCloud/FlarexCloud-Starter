@@ -92,7 +92,7 @@ fi
 if [ -d .git ]; then
     if [ -f .git/config ]; then
         ORIGIN=$(git config --get remote.origin.url)
-        if [ ! -z "$ORIGIN" ] && [ "$AUTO_PULL" != "no" ]; then
+        if [ ! -z "$ORIGIN" ] && [ "$AUTO_PULL" != "no" ]; then [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ];
             if [ "$AUTO_PULL" == "ask" ]; then
                 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
                 echo -e "-| > .git configuration have been detected."
@@ -105,7 +105,16 @@ if [ -d .git ]; then
                         echo "*| > Pulling from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'..."
                         git pull --ff-only
                         ;;
-                    * ) echo "*| > Skipped!";;
+                    * ) 
+                        echo
+                        echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                        echo
+                        echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                        echo "*| > Skipped!"
+                        echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                        echo
+                        echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                        echo;;
                 esac
             else
                 git pull --ff-only ${REPO}
