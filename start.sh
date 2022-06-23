@@ -36,8 +36,6 @@ LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 DEFAULT="\e[39m"
 
-rm -rf /home/container/starter >> /dev/null 2>&1
-
 # || Bash Mode
 
 bash_mode() {
