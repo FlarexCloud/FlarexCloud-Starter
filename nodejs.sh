@@ -22,6 +22,7 @@
 
 # || Start [📍] || #
 
+"""
 while [ ! -z "$1" ]; do
     case "$1" in
         --file ) FILE="$2"; shift 2;;
@@ -55,6 +56,37 @@ while [ ! -z "$1" ]; do
         * ) break;;
     esac
 done
+"""
+
+FILE="$1"# ; shift 2;;
+
+if [[ $2 != --* ]]; then
+    REPO="$2"
+    shift
+else
+    REPO=""
+fi
+shift
+;;
+
+if [[ $3 != --* ]]; then
+    BRANCH="$3"
+    shift
+else
+    BRANCH=""
+fi
+shift
+;;
+
+MANAGER="$4"# ; shift 4;;
+
+SHELL="$5"# ; shift 5;;
+
+AUTO_INSTALL="$6"# ; shift 6;;
+
+AUTO_PULL="$7"# ; shift 7;;
+
+LOGGER="$8"# ; shift 8;;
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
