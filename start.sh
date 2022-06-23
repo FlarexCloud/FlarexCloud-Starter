@@ -67,7 +67,7 @@ if [ "$TERMINAL" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
     case $confirmation in
-        [Yy]* ) TERMINAL_mode;;
+        [Yy]* ) terminal_mode;;
     esac
 elif [ "$TERMINAL" == "yes" ]; then
     terminal_mode
