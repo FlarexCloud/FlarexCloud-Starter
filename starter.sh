@@ -50,7 +50,7 @@ terminal_mode() {
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            exit 0
+            break
         else
             eval "$cmd"
             sleep 0.2
