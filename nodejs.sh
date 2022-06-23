@@ -22,6 +22,15 @@
 
 # || Start [📍] || #
 
+NORMAL="\e[0m"
+BOLD="\e[1m"
+UNDERLINE="\e[4m"
+
+YELLOW="\e[33m"
+LIGHT_MAGENTA="\e[95m"
+LIGHT_GREEN="\e[92m"
+DEFAULT="\e[39m"
+
 while [ ! -z "$1" ]; do
     case "$1" in
         --file ) FILE="$2"; shift 2;;
