@@ -107,14 +107,6 @@ if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
     fi
 fi
 
-"""
-toilet --filter border:gay AcidicNodes
-echo
-
-sleep 1
-
-"""
-
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "-| > Starting Application/Bot..."
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -124,3 +116,5 @@ CMD="node $FILE"
 if [ "$LOGGER" == "yes" ]; then
     CMD="$CMD | tee acidicnodes_debug_$(date +%d-%m-%Y_%H-%M-%S).log"
 fi
+
+eval "$CMD"
