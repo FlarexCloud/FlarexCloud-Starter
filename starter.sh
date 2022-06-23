@@ -77,6 +77,7 @@ fi
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "-| > ${BOLD}Terminal mode have been disabled!${NORMAL}"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo;
 
