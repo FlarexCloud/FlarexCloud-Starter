@@ -117,10 +117,13 @@ if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
     fi
 fi
 
+"""
 toilet --filter border:gay AcidicNodes
 echo
 
 sleep 1
+
+"""
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "-| > Starting Application/Bot..."
