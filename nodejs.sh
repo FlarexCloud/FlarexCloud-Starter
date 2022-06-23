@@ -31,53 +31,28 @@ LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 DEFAULT="\e[39m"
 
-while [ ! -z "$1" ]; do
-    case "$1" in
-        --file ) FILE="$2"; shift 2;;
-        
-        --repo )
-            if [[ $2 != --* ]]; then
-                REPO="$2"
-                shift
-            else
-                REPO=""
-            fi
-            shift
-            ;;
-        
-        --branch )
-            if [[ $2 != --* ]]; then
-                BRANCH="$2"
-                shift
-            else
-                BRANCH=""
-            fi
-            shift
-            ;;
-        
-        --manager ) MANAGER="$2"; shift 2;;
-        --shell ) SHELL="$2"; shift 2;;
-        --auto-install ) AUTO_INSTALL="$2"; shift 2;;
-        --auto-pull ) AUTO_PULL="$2"; shift 2;;
-        --logger ) LOGGER="$2"; shift 2;;
-        -- ) shift; break;;
-        * ) break;;
-    esac
-done
+FILE={{FILE}}
+REPO={{REPO}}
+BRANCH={{BRANCH}}
+MANAGER={{MANAGER}}
+TERMINAL={{TERMINAL}}
+AUTO_INSTALL={{AUTO_INSTALL}}
+AUTO_PULL={{AUTO_PULL}}
+LOGGER={{LOGGER}}
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
 echo -e "| > Git Repository: '${UNDERLINE}${REPO}\e[24m'"
 echo -e "| > Git Branch: '${UNDERLINE}${BRANCH}\e[24m'"
 echo -e "| > Package Manager '${UNDERLINE}${MANAGER}\e[24m'"
-echo -e "| > Bash Mode: '${UNDERLINE}${SHELL}\e[24m'"
+echo -e "| > Terminal Mode: '${UNDERLINE}${TERMINAL}\e[24m'"
 echo -e "| > Auto Install: '${UNDERLINE}${AUTO_INSTALL}\e[24m'"
 echo -e "| > Auto Pull: '${UNDERLINE}${AUTO_PULL}\e[24m'"
 echo -e "| > Logs: '${UNDERLINE}${LOGGER}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/start.sh
-bash /tmp/start "$REPO" "$BRANCH" $SHELL $AUTO_PULL
+bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"

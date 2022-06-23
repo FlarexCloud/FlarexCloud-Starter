@@ -24,7 +24,7 @@
 
 REPO=$1
 BRANCH=$2
-BASH=$3
+TERMINAL=$3
 AUTO_PULL=$4
 
 NORMAL="\e[0m"
@@ -36,11 +36,11 @@ LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 DEFAULT="\e[39m"
 
-# || Bash Mode
+# || Terminal Mode
 
-bash_mode() {
+terminal_mode() {
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > The bash mode have been enabled. To exit, please just type in '${UNDERLINE}exit\e[24m'."
+    echo -e "| > The terminal mode have been enabled. To exit, please just type in '${UNDERLINE}exit\e[24m'."
     echo -e "| > ${BOLD}WARNING! Terminal text editors, and long running processes won't work here.\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "\033[1m${YELLOW}container@acidicnodes:$\033[0m"
@@ -48,7 +48,7 @@ bash_mode() {
         read -p "\033[1m${YELLOW}container@acidicnodes:$\033[0m " cmd
         if [ "$cmd" == "exit" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo -e "| > Thanks for using AcidicNodes, and it's Bash Mode."
+            echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             sleep 1
             exit
@@ -60,21 +60,21 @@ bash_mode() {
     done
 }
 
-if [ "$BASH" == "ask" ]; then
+if [ "$TERMINAL" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > Would you like no enable the access to bash mode? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
+    echo -e "-| > Would you like no enable the access to terminal mode? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
     case $confirmation in
-        [Yy]* ) bash_mode;;
+        [Yy]* ) TERMINAL_mode;;
     esac
-elif [ "$BASH" == "yes" ]; then
-    bash_mode
+elif [ "$TERMINAL" == "yes" ]; then
+    terminal_mode
 fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo -e "-| > ${BOLD}Bash mode have been disabled!${NORMAL}"
+echo -e "-| > ${BOLD}Terminal mode have been disabled!${NORMAL}"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}";
 
 cd /home/container
