@@ -34,7 +34,17 @@ DEFAULT="\e[39m"
 
 FILE=$1
 APPLICATION=$2
-REPO=$3
+# REPO=$3
+if [[ $2 != "none" ]]; then
+    REPO=""
+    shift
+if [[ $2 == "none" ]]; then
+    REPO="$3"
+    shift
+else
+    REPO=""
+fi
+shift;;
 BRANCH=$4
 MANAGER=$5
 TERMINAL=$6
@@ -57,13 +67,15 @@ echo -e "${LIGHT_MAGENTA}*******************************************************
 
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo
 wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/starter.sh
+echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
 if [ "$APPLICATION" == "none" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > You have picked '${UNDERLINE}no application\e[24m'!"
+    echo -e "| > You have picked ${UNDERLINE}no application\e[24m!"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
