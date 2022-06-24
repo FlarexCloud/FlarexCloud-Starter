@@ -34,12 +34,12 @@ DEFAULT="\e[39m"
 
 FILE=$1
 APPLICATION=$2
-REPO=$3
-#if [[ $2 != "none" ]]; then
-#    REPO=""
-#if [[ $2 == "none" ]]; then
-#    REPO="$3"
-#fi
+# REPO=$3
+if [[ $2 != "none" ]]; then
+    REPO=""
+if [[ $2 == "none" ]]; then
+    REPO="$3"
+fi
 BRANCH=$4
 #if [[ $2 != "none" ]]; then
 #    BRANCH=""
