@@ -39,19 +39,15 @@ if [[ $2 != "none" ]]; then
     REPO=""
     shift
 if [[ $2 == "none" ]]; then
-    REPO="$3"
-    shift
+    REPO="$3"; shift
 fi
-shift;
 # BRANCH=$4
 if [[ $2 != "none" ]]; then
     BRANCH=""
     shift
 if [[ $2 == "none" ]]; then
-    BRANCH="$4"
-    shift
+    BRANCH="$4"; shift
 fi
-shift;
 MANAGER=$5
 TERMINAL=$6
 AUTO_INSTALL=$7
