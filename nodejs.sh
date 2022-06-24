@@ -42,6 +42,7 @@ AUTO_PULL=$8
 LOGGER=$9
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
 echo -e "| > Git Repository: '${UNDERLINE}${REPO}\e[24m'"
 echo -e "| > Git Branch: '${UNDERLINE}${BRANCH}\e[24m'"
@@ -60,6 +61,13 @@ echo -e "${LIGHT_GREEN}*********************************************************
 echo
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
+
+if [ "$APPLICATION" == "none" ]; then
+else if [ "$APPLICATION" == "Discord Bots" ]; then
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+fi
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
