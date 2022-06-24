@@ -61,6 +61,7 @@ echo -e "${LIGHT_GREEN}*********************************************************
 echo
 
 if [ "$APPLICATION" == "none" ]; then
+echo -e "a"
 elif [ "$APPLICATION" == "Discord Bots" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
