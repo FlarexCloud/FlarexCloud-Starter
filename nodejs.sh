@@ -60,14 +60,14 @@ wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/mai
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
-bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
-
 if [ "$APPLICATION" == "none" ]; then
 else if [ "$APPLICATION" == "Discord Bots" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 fi
+
+bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
