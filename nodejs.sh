@@ -36,15 +36,13 @@ FILE=$1
 APPLICATION=$2
 # REPO=$3
 if [[ $2 != "none" ]]; then
-    REPO=""
-    shift
+    REPO=""; shift
 if [[ $2 == "none" ]]; then
     REPO="$3"; shift
 fi
 # BRANCH=$4
 if [[ $2 != "none" ]]; then
-    BRANCH=""
-    shift
+    BRANCH=""; shift
 if [[ $2 == "none" ]]; then
     BRANCH="$4"; shift
 fi
