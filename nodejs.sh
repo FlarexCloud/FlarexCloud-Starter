@@ -62,10 +62,16 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
 echo -e "a"
-elif [ "$APPLICATION" == "Discord Bots" ]; then
+elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots" ] || [ "$APPLICATION" == "Twitch Bots" ] || [ "$APPLICATION" == "WhatsApp Bots" ] || [ "$APPLICATION" == "General Applications" ]; then
+    echo
+    echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+    echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo
+    echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+    echo
 else
 echo -e "ae"
 fi
