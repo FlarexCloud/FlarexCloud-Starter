@@ -36,16 +36,17 @@ FILE=$1
 APPLICATION=$2
 # REPO=$3
 if [[ $2 != "none" ]]; then
-    REPO=""; shift
+    REPO=""
 if [[ $2 == "none" ]]; then
-    REPO="$3"; shift
+    REPO="$3"
 fi
 # BRANCH=$4
 if [[ $2 != "none" ]]; then
-    BRANCH=""; shift
+    BRANCH=""
 if [[ $2 == "none" ]]; then
-    BRANCH="$4"; shift
+    BRANCH="$4"
 fi
+shift
 MANAGER=$5
 TERMINAL=$6
 AUTO_INSTALL=$7
