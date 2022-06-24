@@ -29,6 +29,7 @@ UNDERLINE="\e[4m"
 YELLOW="\e[33m"
 LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
+LIGHT_RED="\e[91m"
 DEFAULT="\e[39m"
 
 FILE=$1
@@ -61,16 +62,20 @@ echo -e "${LIGHT_GREEN}*********************************************************
 echo
 
 if [ "$APPLICATION" == "none" ]; then
-echo -e "a"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo -e "| > You have picked '${UNDERLINE}no application\e[24m'!"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo
+    echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+    echo
 elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots" ] || [ "$APPLICATION" == "Twitch Bots" ] || [ "$APPLICATION" == "WhatsApp Bots" ] || [ "$APPLICATION" == "General Applications" ]; then
-    echo
-    echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
+    echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please pick another one!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
-    echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
 else
 echo -e "ae"
