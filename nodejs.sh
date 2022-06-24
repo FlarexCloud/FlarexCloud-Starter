@@ -62,12 +62,12 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
 echo -e "a"
-else if [ "$APPLICATION" == "Discord Bots" ]; then
-    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
-    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+# else if [ "$APPLICATION" == "Discord Bots" ]; then
+#     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+#     echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please select another one!\e[21m${NORMAL}"
+#     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 else
-echo -e "a"
+echo -e "ae"
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
