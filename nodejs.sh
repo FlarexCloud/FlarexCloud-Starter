@@ -36,15 +36,15 @@ FILE=$1
 APPLICATION=$2
 # REPO=$3
 if [[ $2 != "none" ]]; then
-    REPO=""
+    REPO=""; shift
 elif [[ $2 == "none" ]]; then
-    REPO="$3"
+    REPO="$3"; shift
 fi
 # BRANCH=$4
 if [[ $2 != "none" ]]; then
-    BRANCH=""
+    BRANCH=""; shift
 elif [[ $2 == "none" ]]; then
-    BRANCH="$4"
+    BRANCH="$4"; shift
 fi
 MANAGER=$5
 TERMINAL=$6
