@@ -84,6 +84,15 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
+elif [ "$APPLICATION" != "none" ]; then
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo -e "| > ${BOLD}WARNING! Remember to reinstall your server in order to '${UNDERLINE}${APPLICATION}\e[24m' to work.\e[21m${NORMAL}"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
