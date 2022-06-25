@@ -34,6 +34,11 @@ DEFAULT="\e[39m"
 
 FILE=$1
 APPLICATION=$2
+MANAGER=$5
+TERMINAL=$6
+AUTO_INSTALL=$7
+AUTO_PULL=$8
+LOGGER=$9
 # REPO=$3
 if [[ "$2" != "none" ]]; then
     REPO=""; shift
@@ -50,11 +55,6 @@ elif [[ "$2" == "none" ]]; then
     BRANCH="$4"; shift
     echo -e "4"
 fi
-MANAGER=$5
-TERMINAL=$6
-AUTO_INSTALL=$7
-AUTO_PULL=$8
-LOGGER=$9
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
