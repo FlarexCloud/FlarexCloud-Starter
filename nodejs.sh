@@ -92,7 +92,6 @@ else
             mv auth.json.example auth.json
             mv rss.json.example rss.json
             nano acidicnodes.discord.chalda.discordbot
-        else
         fi
     fi
 fi
