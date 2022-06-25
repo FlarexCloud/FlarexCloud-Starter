@@ -32,6 +32,7 @@ BOLD="\e[1m"
 UNDERLINE="\e[4m"
 
 YELLOW="\e[33m"
+LIGHT_YELLOW="\e[93m"
 LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 LIGHT_RED="\e[91m"
