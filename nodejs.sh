@@ -189,8 +189,8 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     CMD="node $FILE"
-elif [ "$APPLICATION" == "Chalda/DiscordBot" ]; then
-    CMD="node discord_bot.js"
+elif [ "$APPLICATION" != "none" ]; then
+    CMD="node ."
 fi
 
 if [ "$LOGGER" == "yes" ]; then
