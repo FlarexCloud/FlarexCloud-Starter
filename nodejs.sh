@@ -42,11 +42,9 @@ LOGGER=$9
 if [[ "$2" != "none" ]]; then
     REPO=""
     BRANCH=""; shift
-    echo -e "1"
 elif [[ "$2" == "none" ]]; then
     REPO="$3"
     BRANCH="$4"; shift
-    echo -e "2"
 fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
