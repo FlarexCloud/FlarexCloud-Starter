@@ -70,7 +70,7 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > You have picked ${UNDERLINE}no application\e[24m!"
+    echo -e "-| > You have picked ${UNDERLINE}no application\e[24m!"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
@@ -79,7 +79,7 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > ${BOLD}WARNING! ${APPLICATION} is not an application, please pick another one!\e[21m${NORMAL}"
+    echo -e "-| > ${BOLD}WARNING! ${APPLICATION} is not an application, please pick another one!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
@@ -88,7 +88,7 @@ elif [ "$APPLICATION" != "none" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > ${BOLD}WARNING! Remember to reinstall your server in order for '${UNDERLINE}${APPLICATION}\e[24m' to work.\e[21m${NORMAL}"
+    echo -e "-| > ${BOLD}WARNING! Remember to reinstall your server in order for '${UNDERLINE}${APPLICATION}\e[24m' to work.\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
