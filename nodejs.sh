@@ -88,7 +88,7 @@ elif [ "$APPLICATION" != "none" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "| > ${BOLD}WARNING! Remember to reinstall your server in order to '${UNDERLINE}${APPLICATION}\e[24m' to work.\e[21m${NORMAL}"
+    echo -e "| > ${BOLD}WARNING! Remember to reinstall your server in order for '${UNDERLINE}${APPLICATION}\e[24m' to work.\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
@@ -169,6 +169,15 @@ if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
     fi
 fi
 
+if [ "$APPLICATION" != "none" ]; then
+    echo -e "${LIGHT_YELLOW}************************************************************${DEFAULT}"
+    echo
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo -e "-| > Remember to take a look at our Discord Server and at our Knowledgebase if you need help setting up ${APPLICATION}!"
+    echo -e "${LIGHT_YELLOW}************************************************************${DEFAULT}"
+    echo
+fi
+
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -180,7 +189,7 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     CMD="node $FILE"
-elif [ "$APPLICATION" == "chalda/DiscordBot" ]; then
+elif [ "$APPLICATION" == "Chalda/DiscordBot" ]; then
     CMD="node discord_bot.js"
 fi
 
