@@ -27,6 +27,7 @@ BOLD="\e[1m"
 UNDERLINE="\e[4m"
 
 YELLOW="\e[33m"
+LIGHT_YELLOW="\e[93m"
 LIGHT_MAGENTA="\e[95m"
 LIGHT_GREEN="\e[92m"
 LIGHT_RED="\e[91m"
@@ -170,11 +171,11 @@ if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
 fi
 
 if [ "$APPLICATION" != "none" ]; then
+    echo
     echo -e "${LIGHT_YELLOW}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "-| > Remember to take a look at our Discord Server and at our Knowledgebase if you need help setting up ${APPLICATION}!"
-    echo -e "${LIGHT_YELLOW}************************************************************${DEFAULT}"
     echo
 fi
 
