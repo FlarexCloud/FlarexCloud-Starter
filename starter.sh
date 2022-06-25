@@ -78,8 +78,6 @@ fi
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "-| > ${BOLD}Terminal mode have been disabled!${NORMAL}"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo;
 
 cd /home/container
@@ -108,13 +106,9 @@ if [ -d .git ]; then
                         ;;
                     * ) 
                         echo
-                        echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-                        echo
                         echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
                         echo "*| > Skipped!"
                         echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-                        echo
-                        echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
                         echo;;
                 esac
             else
