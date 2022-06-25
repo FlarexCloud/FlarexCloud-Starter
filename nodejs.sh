@@ -35,16 +35,20 @@ DEFAULT="\e[39m"
 FILE=$1
 APPLICATION=$2
 # REPO=$3
-if [[ $2 != "none" ]]; then
+if [[ "$2" != "none" ]]; then
     REPO=""; shift
-elif [[ $2 == "none" ]]; then
+    echo -e "1"
+elif [[ "$2" == "none" ]]; then
     REPO="$3"; shift
+    echo -e "2"
 fi
 # BRANCH=$4
-if [[ $2 != "none" ]]; then
+if [[ "$2" != "none" ]]; then
     BRANCH=""; shift
-elif [[ $2 == "none" ]]; then
+    echo -e "3"
+elif [[ "$2" == "none" ]]; then
     BRANCH="$4"; shift
+    echo -e "4"
 fi
 MANAGER=$5
 TERMINAL=$6
@@ -90,7 +94,8 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
 else
-echo -e "ae"
+    if [ "$APPLICATION" == "none" ]; then
+    fi
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
