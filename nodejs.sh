@@ -176,7 +176,9 @@ if [ "$APPLICATION" != "none" ]; then
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "-| > Remember to take a look at our Discord Server and at our Knowledgebase if you need help setting up ${APPLICATION}!"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
+    echo -e "${LIGHT_YELLOW}************************************************************${DEFAULT}"
 fi
 
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
