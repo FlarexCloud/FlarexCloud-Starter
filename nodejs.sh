@@ -41,20 +41,15 @@ AUTO_PULL=$8
 LOGGER=$9
 # REPO=$3
 if [[ "$2" != "none" ]]; then
-    REPO=""; shift
+    REPO=""
+    BRANCH=""; shift
     echo -e "1"
 elif [[ "$2" == "none" ]]; then
-    REPO="$3"; shift
+    REPO="$3"
+    BRANCH="$4"; shift
     echo -e "2"
 fi
 # BRANCH=$4
-if [[ "$2" != "none" ]]; then
-    BRANCH=""; shift
-    echo -e "3"
-elif [[ "$2" == "none" ]]; then
-    BRANCH="$4"; shift
-    echo -e "4"
-fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
@@ -94,8 +89,9 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
 else
-    if [ "$APPLICATION" == "none" ]; then
-    fi
+echo -e "ae"
+    #if [ "$APPLICATION" == "none" ]; then
+    #fi
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
