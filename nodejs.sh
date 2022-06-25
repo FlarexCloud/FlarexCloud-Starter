@@ -84,16 +84,6 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
-else
-    if [ "$APPLICATION" == "chalda/DiscordBot" ]; then
-        if [ -f acidicnodes.discord.chalda.discordbot ]; then
-            git clone --single-branch --branch master https://github.com/chalda/DiscordBot.git .
-            mv permissions.json.example permissions.json
-            mv auth.json.example auth.json
-            mv rss.json.example rss.json
-            nano acidicnodes.discord.chalda.discordbot
-        fi
-    fi
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
