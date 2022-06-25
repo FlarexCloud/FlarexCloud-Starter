@@ -39,10 +39,10 @@ TERMINAL=$6
 AUTO_INSTALL=$7
 AUTO_PULL=$8
 LOGGER=$9
-if [[ "$2" != "none" ]]; then
+if [ "$2" != "none" ]; then
     REPO=""
     BRANCH=""; shift
-elif [[ "$2" == "none" ]]; then
+elif [ "$2" == "none" ]; then
     REPO="$3"
     BRANCH="$4"; shift
 fi
@@ -86,7 +86,14 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo
 else
     if [ "$APPLICATION" == "chalda/DiscordBot" ]; then
-        echo -e "chalda"
+        if [ -f acidicnodes.discord.chalda.discordbot ]; then
+            git clone --single-branch --branch master https://github.com/chalda/DiscordBot.git .
+            mv permissions.json.example permissions.json
+            mv auth.json.example auth.json
+            mv rss.json.example rss.json
+            nano acidicnodes.discord.chalda.discordbot
+        else
+        fi
     fi
 fi
 
@@ -173,7 +180,11 @@ echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
-CMD="node $FILE"
+if [ "$APPLICATION" == "none" ]; then
+    CMD="node $FILE"
+elif [ "$APPLICATION" == "chalda/DiscordBot" ]; then
+    CMD="node discord_bot.js"
+fi
 
 if [ "$LOGGER" == "yes" ]; then
     CMD="$CMD | tee acidicnodes_debug_$(date +%d-%m-%Y_%H-%M-%S).log"
