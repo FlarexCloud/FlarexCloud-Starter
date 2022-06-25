@@ -39,7 +39,6 @@ TERMINAL=$6
 AUTO_INSTALL=$7
 AUTO_PULL=$8
 LOGGER=$9
-# REPO=$3
 if [[ "$2" != "none" ]]; then
     REPO=""
     BRANCH=""; shift
@@ -49,7 +48,6 @@ elif [[ "$2" == "none" ]]; then
     BRANCH="$4"; shift
     echo -e "2"
 fi
-# BRANCH=$4
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
@@ -89,9 +87,9 @@ elif [ "$APPLICATION" == "Discord Bots" ] || [ "$APPLICATION" == "Telegram Bots"
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
 else
-echo -e "ae"
-    #if [ "$APPLICATION" == "none" ]; then
-    #fi
+    if [ "$APPLICATION" == "chalda/DiscordBot" ]; then
+        echo -e "chalda"
+    fi
 fi
 
 bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
