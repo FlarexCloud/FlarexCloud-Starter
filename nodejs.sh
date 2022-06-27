@@ -85,6 +85,7 @@ elif [ "$APPLICATION" == "-(  Discord Bots  )-" ] || [ "$APPLICATION" == "-(  Te
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
+    break
 elif [ "$APPLICATION" != "none" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
