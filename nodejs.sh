@@ -80,7 +80,7 @@ elif [ "$APPLICATION" == "-(  Discord Bots  )-" ] || [ "$APPLICATION" == "-(  Te
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > ${BOLD}WARNING! ${APPLICATION} is not an application, please pick another one!\e[21m${NORMAL}"
+    echo -e "-| > ${BOLD}WARNING! '${UNDERLINE}${APPLICATION}\e[24m' is not an application, please pick another one!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
