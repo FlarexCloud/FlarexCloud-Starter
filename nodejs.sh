@@ -207,7 +207,7 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     CMD="node $FILE"
-elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ ${SERVER_MEMORY} >= 512 ]; then
+elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" >= 512 ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
