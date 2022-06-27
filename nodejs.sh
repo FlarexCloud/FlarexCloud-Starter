@@ -53,12 +53,27 @@ echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
 echo -e "| > Git Repository: '${UNDERLINE}${REPO}\e[24m'"
 echo -e "| > Git Branch: '${UNDERLINE}${BRANCH}\e[24m'"
-echo -e "| > Package Manager '${UNDERLINE}${MANAGER}\e[24m'"
+echo -e "| > Package Manager: '${UNDERLINE}${MANAGER}\e[24m'"
 echo -e "| > Terminal Mode: '${UNDERLINE}${TERMINAL}\e[24m'"
 echo -e "| > Auto Install: '${UNDERLINE}${AUTO_INSTALL}\e[24m'"
 echo -e "| > Auto Pull: '${UNDERLINE}${AUTO_PULL}\e[24m'"
 echo -e "| > Logs: '${UNDERLINE}${LOGGER}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+
+sleep 0.5
+echo
+
+echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo -e "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
+echo -e "| > Location: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
+echo -e "| > RAM: '${UNDERLINE}${SERVER_MEMORY}\e[24m'"
+echo -e "| > FQN: '${UNDERLINE}${SERVER_IP}\e[24m'"
+echo -e "| > Allowed Ports: '${UNDERLINE}${P_SERVER_ALLOCATION_LIMIT}\e[24m'"
+echo -e "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
+echo -e "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
+echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+
+sleep 1.2
 
 
 echo
