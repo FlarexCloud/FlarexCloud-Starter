@@ -211,7 +211,7 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > ${BOLD}WARNING! '${UNDERLINE}${APPLICATION}\e[24m' must have '${UNDERLINE}512MB\e[24m' of RAM or more in order for it to run!\e[21m${NORMAL}"
+    echo -e "-| > ${BOLD}WARNING! '${UNDERLINE}${APPLICATION}\e[24m' must have a minimum of '${UNDERLINE}512MB\e[24m' of RAM in order for it to run!\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
