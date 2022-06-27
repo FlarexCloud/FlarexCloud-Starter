@@ -66,7 +66,7 @@ echo
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
 echo -e "| > Cluster: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
-echo -e "| > RAM: '${UNDERLINE}${SERVER_MEMORY}\e[24m'"
+echo -e "| > RAM: '${UNDERLINE}${SERVER_MEMORY}MB\e[24m'"
 echo -e "| > Local IPv4: '${UNDERLINE}${SERVER_IP}\e[24m'"
 echo -e "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
 echo -e "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
@@ -207,7 +207,7 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     CMD="node $FILE"
-elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" >= 512 ]; then
+elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -le "512" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
