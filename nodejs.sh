@@ -85,7 +85,7 @@ elif [ "$APPLICATION" == "-(  Discord Bots  )-" ] || [ "$APPLICATION" == "-(  Te
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
-        break
+        exit 0
 elif [ "$APPLICATION" != "-(  Discord Bots  )-" ] || [ "$APPLICATION" != "-(  Telegram Bots  )-" ] || [ "$APPLICATION" != "-(  Twitch Bots  )-" ] || [ "$APPLICATION" != "-(  WhatsApp Bots  )-" ] || [ "$APPLICATION" != "-(  General Applications  )-" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
