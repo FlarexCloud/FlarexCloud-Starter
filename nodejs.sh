@@ -90,7 +90,7 @@ if [ "$APPLICATION" == "none" ]; then
     echo
     echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
     echo
-elif [ "$APPLICATION" == "-(  Discord Bots  )-" ] || [ "$APPLICATION" == "-(  Telegram Bots  )-" ] || [ "$APPLICATION" == "-(  Twitch Bots  )-" ] || [ "$APPLICATION" == "-(  WhatsApp Bots  )-" ] || [ "$APPLICATION" == "-(  General Applications  )-" ]; then
+elif [ "$APPLICATION" == "-(  Discord Bots  )-" ] || [ "$APPLICATION" == "-(  Telegram Bots  )-" ] || [ "$APPLICATION" == "-(  Twitch Bots  )-" ] || [ "$APPLICATION" == "-(  WhatsApp Bots  )-" ] || [ "$APPLICATION" == "-(  [MD] WhatsApp Bots  )-" ] || [ "$APPLICATION" == "-(  [NON-MD] WhatsApp Bots  )-" ] || [ "$APPLICATION" == "-(  General Applications  )-" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
