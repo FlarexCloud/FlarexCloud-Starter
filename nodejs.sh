@@ -114,7 +114,7 @@ elif [ "$APPLICATION" != "-(  Discord Bots  )-" ] || [ "$APPLICATION" != "-(  Te
     echo
 fi
 
-bash /tmp/start "$REPO" "$BRANCH" $TERMINAL $AUTO_PULL
+bash /tmp/start "$REPO" "$BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
