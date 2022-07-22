@@ -35,17 +35,19 @@ DEFAULT="\e[39m"
 
 FILE=$1
 APPLICATION=$2
-MANAGER=$5
-TERMINAL=$6
-AUTO_INSTALL=$7
-AUTO_PULL=$8
-LOGGER=$9
+MANAGER=$6
+TERMINAL=$7
+AUTO_INSTALL=$8
+AUTO_PULL=$9
+LOGGER=$10
 if [ "$2" != "none" ]; then
     REPO=""
-    BRANCH=""; shift
+    BRANCH=""
+    GIT_TOKEN=""; shift
 elif [ "$2" == "none" ]; then
     REPO="$3"
-    BRANCH="$4"; shift
+    BRANCH="$4"
+    GIT_TOKEN="$5"; shift
 fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -53,6 +55,7 @@ echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
 echo -e "| > Git Repository: '${UNDERLINE}${REPO}\e[24m'"
 echo -e "| > Git Branch: '${UNDERLINE}${BRANCH}\e[24m'"
+echo -e "| > Git Token: '${UNDERLINE}${GIT_TOKEN}\e[24m'"
 echo -e "| > Package Manager: '${UNDERLINE}${MANAGER}\e[24m'"
 echo -e "| > Terminal Mode: '${UNDERLINE}${TERMINAL}\e[24m'"
 echo -e "| > Auto Install: '${UNDERLINE}${AUTO_INSTALL}\e[24m'"
