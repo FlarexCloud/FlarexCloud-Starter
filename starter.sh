@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-REPO=$1
+GIT_REPOSITORY=$1
 BRANCH=$2
 GIT_TOKEN=$3
 TERMINAL=$4
@@ -86,8 +86,8 @@ cd /home/container
 
 # || GitHub
 
-if [[ $REPO != *.git ]]; then
-    REPO=${REPO}.git
+if [[ $GIT_REPOSITORY != *.git ]]; then
+    GIT_REPOSITORY=${GIT_REPOSITORY}.git
 fi
 
 if [ -d .git ]; then
@@ -114,11 +114,11 @@ if [ -d .git ]; then
                         echo;;
                 esac
             else
-                git pull --ff-only ${REPO}
+                git pull --ff-only ${GIT_REPOSITORY}
             fi
         fi
     fi
-elif [ ! -z "$REPO" ] && [ ! -z "$BRANCH" ]; then
+elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -128,12 +128,12 @@ elif [ ! -z "$REPO" ] && [ ! -z "$BRANCH" ]; then
             rm -rf ..?* .[!.]* *
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
-            echo -e "-| > Cloning '${LIGHT_GREEN}${BRANCH}${NORMAL}' from '${LIGHT_GREEN}${REPO}${NORMAL}'\e[24m"
+            echo -e "-| > Cloning '${LIGHT_GREEN}${BRANCH}${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             if [ ! -z "$GIT_TOKEN" ]; then
-                git clone --single-branch --branch ${BRANCH} https://${GIT_TOKEN}@$(echo -e ${REPO} | cut -d/ -f3-) .
+                git clone --single-branch --branch ${BRANCH} https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
             else
-                git clone --single-branch --branch ${BRANCH} ${REPO} .
+                git clone --single-branch --branch ${BRANCH} ${GIT_REPOSITORY} .
             fi
             ;;
         * ) echo "*| > Skipped!";;

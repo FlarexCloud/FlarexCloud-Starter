@@ -41,20 +41,20 @@ AUTO_INSTALL=$8
 AUTO_PULL=$9
 LOGGER=${10}
 if [ "$2" != "none" ]; then
-    REPO=""
-    BRANCH=""
+    GIT_REPOSITORY=""
+    GIT_BRANCH=""
     GIT_TOKEN=""; shift
 elif [ "$2" == "none" ]; then
-    REPO="$3"
-    BRANCH="$4"
+    GIT_REPOSITORY="$3"
+    GIT_BRANCH="$4"
     GIT_TOKEN="$5"; shift
 fi
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Application: '${UNDERLINE}${APPLICATION}\e[24m'"
 echo -e "| > Starter File: '${UNDERLINE}${FILE}\e[24m'"
-echo -e "| > Git Repository: '${UNDERLINE}${REPO}\e[24m'"
-echo -e "| > Git Branch: '${UNDERLINE}${BRANCH}\e[24m'"
+echo -e "| > Git Repository: '${UNDERLINE}${GIT_REPOSITORY}\e[24m'"
+echo -e "| > Git Branch: '${UNDERLINE}${GIT_BRANCH}\e[24m'"
 echo -e "| > Git Token: '${UNDERLINE}${GIT_TOKEN}\e[24m'"
 echo -e "| > Package Manager: '${UNDERLINE}${MANAGER}\e[24m'"
 echo -e "| > Terminal Mode: '${UNDERLINE}${TERMINAL}\e[24m'"
@@ -114,7 +114,7 @@ elif [ "$APPLICATION" != "-(  Discord Bots  )-" ] || [ "$APPLICATION" != "-(  Te
     echo
 fi
 
-bash /tmp/start "$REPO" "$BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
+bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
