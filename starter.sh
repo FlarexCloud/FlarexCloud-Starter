@@ -130,7 +130,7 @@ elif [ ! -z "$REPO" ] && [ ! -z "$BRANCH" ]; then
             echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
             echo -e "-| > Cloning '${LIGHT_GREEN}${BRANCH}${NORMAL}' from '${LIGHT_GREEN}${REPO}${NORMAL}'\e[24m"
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            elif [ ! -z "$GIT_TOKEN" ]; then
+            if [ ! -z "$GIT_TOKEN" ]; then
                 git clone --single-branch --branch ${BRANCH} https://${GIT_TOKEN}@$(echo -e ${REPO} | cut -d/ -f3-) .
             else
                 git clone --single-branch --branch ${BRANCH} ${REPO} .
