@@ -210,7 +210,9 @@ echo -e "${LIGHT_GREEN}*********************************************************
 echo
 
 if [ "$APPLICATION" == "none" ]; then
-    CMD="node $FILE"
+    if [ "$SERVER_MEMORY" == "1000" ]; then
+        CMD="node --max-old-space-size=350 $FILE"
+    fi
 elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt "2048" ]; then
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
@@ -222,7 +224,9 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
     echo
         exit 0
 elif [ "$APPLICATION" != "none" ]; then
-    CMD="node ."
+    if [ "$SERVER_MEMORY" == "1000" ]; then
+        CMD="node --max-old-space-size=350 ."
+    fi
 fi
 
 if [ "$LOGGER" == "yes" ]; then
