@@ -23,10 +23,14 @@
 # || Start [📍] || #
 
 GIT_REPOSITORY=$1
-BRANCH=$2
 GIT_TOKEN=$3
 TERMINAL=$4
 AUTO_PULL=$5
+if [ "$2" != "" ]; then
+    BRANCH=$2; shift
+elif [ "$2" == "" ]; then
+    BRANCH="default"; shift
+fi
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
