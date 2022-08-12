@@ -27,9 +27,9 @@ GIT_TOKEN=$3
 TERMINAL=$4
 AUTO_PULL=$5
 if [ "$2" != "" ]; then
-    BRANCH=$2; shift
+    GIT_BRANCH=$2; shift
 elif [ "$2" == "" ]; then
-    BRANCH="default"; shift
+    GIT_BRANCH="default"; shift
 fi
 
 NORMAL="\e[0m"
@@ -122,7 +122,7 @@ if [ -d .git ]; then
             fi
         fi
     fi
-elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$BRANCH" ]; then
+elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -132,12 +132,32 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$BRANCH" ]; then
             rm -rf ..?* .[!.]* *
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
-            echo -e "-| > Cloning '${LIGHT_GREEN}${BRANCH}${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
+            echo -e "-| > Cloning '${LIGHT_GREEN}${GIT_BRANCH}${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             if [ ! -z "$GIT_TOKEN" ]; then
-                git clone --single-branch --branch ${BRANCH} https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
+                git clone --single-branch --branch ${GIT_BRANCH} https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
             else
-                git clone --single-branch --branch ${BRANCH} ${GIT_REPOSITORY} .
+                git clone --single-branch --branch ${GIT_BRANCH} ${GIT_REPOSITORY} .
+            fi
+            ;;
+        * ) echo "*| > Skipped!";;
+    esac
+elif [ "$GIT_BRANCH" == "default" ]; then
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
+    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+    read confirmation
+    case $confirmation in
+        [Yy]* )
+            rm -rf ..?* .[!.]* *
+            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
+            echo -e "-| > Cloning '${LIGHT_GREEN}${GIT_BRANCH}${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
+            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            if [ ! -z "$GIT_TOKEN" ]; then
+                git clone https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
+            else
+                git clone ${GIT_REPOSITORY} .
             fi
             ;;
         * ) echo "*| > Skipped!";;
