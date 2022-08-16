@@ -136,47 +136,51 @@ if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo "-| > Please choose your favourite package manager: [Enter the integer]"
     echo "-|"
-    echo -e ">> | > 1) npm ($NPM_VERSION) [default]"
     if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
+        echo -e ">> | > 1) npm ($NPM_VERSION) [default]"
         echo -e ">> | > 2) yarn ($YARN_VERSION)"
+    else
+        echo -e ">> | > *) No package manager can be selected."
     fi
     # echo -e ">> | > 3) pnpm"
     echo "-|"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
-    case $confirmation in
-        2 )
-            MANAGER="yarn"
-            echo
-            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-            echo
-            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo "*| > Using $MANAGER..."
-            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo
-            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-            echo
-            sleep 1.5
-            ;;
-        # 3 )
-        #     MANAGER="pnpm"
-        #     echo "Using pnpm"
-        #     ;;
-        * )
-            MANAGER="npm"
-            echo
-            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-            echo
-            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo "*| > Using $MANAGER..."
-            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo
-            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-            echo
-            sleep 1.5
-            ;;
-    esac
+    if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
+        case $confirmation in
+            2 )
+                MANAGER="yarn"
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo "*| > Using $MANAGER..."
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo
+                sleep 1.5
+                ;;
+            # 3 )
+            #     MANAGER="pnpm"
+            #     echo "Using pnpm"
+            #     ;;
+            * )
+                MANAGER="npm"
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo "*| > Using $MANAGER..."
+                echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+                echo
+                echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+                echo
+                sleep 1.5
+                ;;
+        esac
+    fi
 fi
 
 if [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]; then
