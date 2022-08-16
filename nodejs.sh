@@ -22,7 +22,8 @@
 
 # || Start [📍] || #
 
-NODE_VERSION=$(node -v)
+NODEJS_VERSION=$(node -v)
+NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
 
 NORMAL="\e[0m"
@@ -119,17 +120,25 @@ fi
 
 bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
-if [ "$NODE_VERSION" == "v12.22.11" ]; then
+if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
     npm i yarn
+fi
+
+if [ "$MANAGER" == "yarn" ]; then
+    if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
+        echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+        echo "-| > Yarn could eventually not work with this NodeJs version. ($NODEJS_VERSION)"
+        echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    fi
 fi
 
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo "-| > Please choose your favourite package manager: [Enter the integer]"
     echo "-|"
-    echo -e ">> | > 1) npm [default]"
-    if [ "$NODE_VERSION" == "v12.22.11" ]; then
-        echo -e ">> | > 2) yarn"
+    echo -e ">> | > 1) npm ($NPM_VERSION) [default]"
+    if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
+        echo -e ">> | > 2) yarn ($YARN_VERSION)"
     fi
     # echo -e ">> | > 3) pnpm"
     echo "-|"
