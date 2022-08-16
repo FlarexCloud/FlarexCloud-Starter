@@ -29,7 +29,7 @@ AUTO_PULL=$5
 if [ "$2" != "" ]; then
     GIT_BRANCH=$2; shift
 elif [ "$2" == "" ]; then
-    GIT_BRANCH="default"; shift
+    GIT_BRANCH=""; shift
 fi
 
 NORMAL="\e[0m"
@@ -122,7 +122,7 @@ if [ -d .git ]; then
             fi
         fi
     fi
-elif [ ! -z "$GIT_REPOSITORY" ] && [ "$GIT_BRANCH" != "default" ]; then
+elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -142,7 +142,7 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ "$GIT_BRANCH" != "default" ]; then
             ;;
         * ) echo "*| > Skipped!";;
     esac
-elif [ ! -z "$GIT_REPOSITORY" ] && [ "$GIT_BRANCH" == "default" ]; then
+elif [ ! -z "$GIT_REPOSITORY" ] && [ -z "$GIT_BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
@@ -152,7 +152,7 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ "$GIT_BRANCH" == "default" ]; then
             rm -rf ..?* .[!.]* *
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "-| > ${BOLD}/home/container${NORMAL} have been wiped out."
-            echo -e "-| > Cloning '${LIGHT_GREEN}${GIT_BRANCH}${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
+            echo -e "-| > Cloning '${LIGHT_GREEN}default${NORMAL}' from '${LIGHT_GREEN}${GIT_REPOSITORY}${NORMAL}'\e[24m"
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             if [ ! -z "$GIT_TOKEN" ]; then
                 git clone https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
