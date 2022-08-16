@@ -161,4 +161,3 @@ elif [ ! -z "$GIT_REPOSITORY" ]; then
             * ) echo "*| > Skipped!";;
         esac
     fi
-fi
