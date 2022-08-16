@@ -137,10 +137,19 @@ if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
     case $confirmation in
-        # 2 )
-        #     MANAGER="yarn"
-        #     echo "Using yarn"
-        #     ;;
+        2 )
+            MANAGER="yarn"
+            echo
+            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+            echo
+            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            echo "*| > Using $MANAGER..."
+            echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+            echo
+            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+            echo
+            sleep 1.5
+            ;;
         # 3 )
         #     MANAGER="pnpm"
         #     echo "Using pnpm"
@@ -151,7 +160,7 @@ if [ "$MANAGER" == "ask" ]; then
             echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
             echo
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo "*| > Using NPM..."
+            echo "*| > Using $MANAGER..."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo
             echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
