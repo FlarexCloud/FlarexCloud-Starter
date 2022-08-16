@@ -22,6 +22,9 @@
 
 # || Start [📍] || #
 
+NODE_VERSION=$(node -v)
+YARN_VERSION=$(yarn -v)
+
 NORMAL="\e[0m"
 BOLD="\e[1m"
 UNDERLINE="\e[4m"
@@ -121,8 +124,10 @@ if [ "$MANAGER" == "ask" ]; then
     echo "-| > Please choose your favourite package manager: [Enter the integer]"
     echo "-|"
     echo -e ">> | > 1) npm [default]"
-    # echo "2) yarn"
-    # echo "3) pnpm"
+    if [ "$NODE_VERSION" == "v12.22.11" ]; then
+        echo -e ">> | > 2) yarn"
+    fi
+    # echo -e ">> | > 3) pnpm"
     echo "-|"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
