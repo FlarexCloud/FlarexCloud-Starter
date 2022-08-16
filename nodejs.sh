@@ -119,6 +119,10 @@ fi
 
 bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
+if [ "$NODE_VERSION" == "v12.22.11" ]; then
+    npm i yarn
+fi
+
 if [ "$MANAGER" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo "-| > Please choose your favourite package manager: [Enter the integer]"
