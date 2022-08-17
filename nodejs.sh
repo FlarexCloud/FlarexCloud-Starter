@@ -139,7 +139,7 @@ if [ "$MANAGER" == "ask" ]; then
     if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
         echo -e ">> | > 1) npm ($NPM_VERSION) [default]"
         echo -e ">> | > 2) yarn ($YARN_VERSION)"
-    else
+    elif [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
         echo -e ">> | > *) No package manager can be selected."
     fi
     # echo -e ">> | > 3) pnpm"
