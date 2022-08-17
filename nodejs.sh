@@ -22,6 +22,7 @@
 
 # || Start [📍] || #
 
+INSTALLER_VERSION=1.0.0
 NODEJS_VERSION=$(node -v)
 NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
@@ -79,7 +80,23 @@ echo -e "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
 echo -e "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
-sleep 1.2
+sleep 0.5
+echo
+
+echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
+echo -e "| > NodeJs Version: '${UNDERLINE}${NODE_VERSION}\e[24m'"
+if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
+    echo -e "| > NPM VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
+    echo -e "| > YARN VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
+else
+    echo -e "| > NPM VERSION: '${UNDERLINE}${NPM_VERSION}\e[24m'"
+    echo -e "| > YARN VERSION: '${UNDERLINE}${YARN_VERSION}\e[24m'"
+fi
+echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+
+sleep 1.5
+echo
 
 
 echo
