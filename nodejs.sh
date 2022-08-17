@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.0
+INSTALLER_VERSION=1.0.1
 NODEJS_VERSION=$(node -v)
 NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
