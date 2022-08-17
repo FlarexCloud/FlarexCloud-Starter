@@ -146,8 +146,8 @@ if [ "$MANAGER" == "ask" ]; then
     echo "-|"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    read confirmation
     if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
+        read confirmation
         case $confirmation in
             2 )
                 MANAGER="yarn"
