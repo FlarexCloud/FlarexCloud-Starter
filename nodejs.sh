@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.2
+INSTALLER_VERSION=1.0.3
 NODEJS_VERSION=$(node -v)
 NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
@@ -90,8 +90,8 @@ if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || 
     echo -e "| > NPM VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
     echo -e "| > YARN VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
 else
-    echo -e "| > NPM VERSION: '${UNDERLINE}${NPM_VERSION}\e[24m'"
-    echo -e "| > YARN VERSION: '${UNDERLINE}${YARN_VERSION}\e[24m'"
+    echo -e "| > NPM VERSION: '${LIGHT_GREEN}${UNDERLINE}${NPM_VERSION}\e[24m'"
+    echo -e "| > YARN VERSION: '${LIGHT_GREEN}${UNDERLINE}${YARN_VERSION}\e[24m'"
 fi
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
