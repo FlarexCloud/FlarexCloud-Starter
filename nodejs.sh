@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.1
+INSTALLER_VERSION=1.0.2
 NODEJS_VERSION=$(node -v)
 NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
@@ -154,10 +154,10 @@ if [ "$MANAGER" == "ask" ]; then
     echo "-| > Please choose your favourite package manager: [Enter the integer]"
     echo "-|"
     if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
+        echo -e ">> | > *) No package manager can be selected."
+    else
         echo -e ">> | > 1) npm ($NPM_VERSION) [default]"
         echo -e ">> | > 2) yarn ($YARN_VERSION)"
-    else
-        echo -e ">> | > *) No package manager can be selected."
     fi
     # echo -e ">> | > 3) pnpm"
     echo "-|"
