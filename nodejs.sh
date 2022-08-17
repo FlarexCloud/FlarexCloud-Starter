@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.5
+INSTALLER_VERSION=1.0.6
 NODEJS_VERSION=$(node -v)
 PYTHON3_VERSION=$(python3 --version)
 PYTHON2_VERSION=$(python -V)
@@ -93,9 +93,15 @@ echo -e "| > Python(2) Version: '${UNDERLINE}${PYTHON2_VERSION}\e[24m'"
 if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
     echo -e "| > NPM VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
     echo -e "| > YARN VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
+    echo -e "| > JDK: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
+elif [ "$NODEJS_VERSION" == "v16.16.0" ]; then
+    echo -e "| > NPM VERSION: '${LIGHT_GREEN}${UNDERLINE}${NPM_VERSION}\e[24m'"
+    echo -e "| > YARN VERSION: '${LIGHT_GREEN}${UNDERLINE}${YARN_VERSION}\e[24m'"
+    echo -e "| > JDK: '${LIGHT_GREEN}${UNDERLINE}Available\e[24m'"
 else
     echo -e "| > NPM VERSION: '${LIGHT_GREEN}${UNDERLINE}${NPM_VERSION}\e[24m'"
     echo -e "| > YARN VERSION: '${LIGHT_GREEN}${UNDERLINE}${YARN_VERSION}\e[24m'"
+    echo -e "| > JDK: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
 fi
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
