@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.8
+INSTALLER_VERSION=1.0.9
 NODEJS_VERSION=$(node -v)
 PYTHON3_VERSION=$(python3 --version)
 NPM_VERSION=$(npm -v)
