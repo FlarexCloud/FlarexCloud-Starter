@@ -22,8 +22,9 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.3
+INSTALLER_VERSION=1.0.4
 NODEJS_VERSION=$(node -v)
+PYTHON_VERSION=$(python -V)
 NPM_VERSION=$(npm -v)
 YARN_VERSION=$(yarn -v)
 
@@ -86,6 +87,7 @@ echo
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
 echo -e "| > NodeJs Version: '${UNDERLINE}${NODE_VERSION}\e[24m'"
+echo -e "| > Python Version: '${UNDERLINE}${PYTHON_VERSION}\e[24m'"
 if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
     echo -e "| > NPM VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
     echo -e "| > YARN VERSION: '${LIGHT_RED}${UNDERLINE}Not available\e[24m'"
