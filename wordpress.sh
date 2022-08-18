@@ -22,8 +22,9 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.4
-PHP_VERSION=$PHP_VERSION
+INSTALLER_VERSION=1.0.0
+PHP_VERSION=$(php -r 'echo PHP_VERSION;')
+PHP_MAJOR_VERSION=$(php -r 'echo PHP_MAJOR_VERSION;')
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -40,7 +41,8 @@ WORDPRESS_INSTALL_VERSION=$1
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
-echo -e "| > PHP Version: '${UNDERLINE}${PHP_VERSION}\e[24m'"
+echo -e "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
+echo -e "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
 echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
@@ -62,17 +64,17 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-echo -e "-| > Thanks for using AcidicNodes, starting WordPress ($WORDPRESS_VERSION)..."
+echo -e "-| > Thanks for using AcidicNodes, starting WordPress (${WORDPRESS_INSTALL_VERSION})..."
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
 sleep 1.5
 
-#if [ "$PHP_VERSION" != "" ]; then
-#/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
-#else
-#/usr/sbin/php-fpm7 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
-#fi
+if [ "$PHP_MAJOR_VERSION" != "7" ]; then
+    /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+    /usr/sbin/nginx -c /home/container/nginx/nginx.conf
+else
+    /usr/sbin/php-fpm7 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+    /usr/sbin/nginx -c /home/container/nginx/nginx.conf
+fi
