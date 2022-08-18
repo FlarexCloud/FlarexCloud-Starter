@@ -23,8 +23,8 @@
 # || Start [📍] || #
 
 INSTALLER_VERSION=1.0.3
-PHP_VERSION=$(php -v)
-WORDPRESS_VERSION=$(grep wp_version /mnt/server/webroot/wp-includes/version.php | awk -F "'" '{print $2}')
+PHP_VERSION=$(php -v | awk -F "'" '{print $2}')
+WORDPRESS_VERSION=$(grep wp_version /home/container/webroot/wp-includes/version.php | awk -F "'" '{print $2}')
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -71,6 +71,8 @@ echo
 
 sleep 1.5
 
-
+#if [ "$PHP_VERSION" == "" ]; then
+#else
+#fi
 /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
 /usr/sbin/nginx -c /home/container/nginx/nginx.conf
