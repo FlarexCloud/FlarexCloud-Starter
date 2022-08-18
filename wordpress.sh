@@ -68,6 +68,7 @@ echo
 
 sleep 1.5
 
+echo 'PHP version: ' . phpversion();
 #if [ "$PHP_VERSION" != "" ]; then
 #/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
 #/usr/sbin/nginx -c /home/container/nginx/nginx.conf
