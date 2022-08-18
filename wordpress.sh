@@ -25,6 +25,7 @@
 INSTALLER_VERSION=1.0.0
 PHP_VERSION=$(php -r 'echo PHP_VERSION;')
 PHP_MAJOR_VERSION=$(php -r 'echo PHP_MAJOR_VERSION;')
+NGINX_VERSION=$(nginx -v)
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -44,6 +45,7 @@ echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
 echo -e "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
 echo -e "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
 echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
+echo -e "| > WordPress Version: '${UNDERLINE}$NGINX_VERSION\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 0.5
