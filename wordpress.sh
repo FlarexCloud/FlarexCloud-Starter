@@ -25,7 +25,6 @@
 INSTALLER_VERSION=1.0.0
 PHP_VERSION=$(php -r 'echo PHP_VERSION;')
 PHP_MAJOR_VERSION=$(php -r 'echo PHP_MAJOR_VERSION;')
-NGINX_VERSION=$(nginx -v)
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -45,7 +44,6 @@ echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
 echo -e "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
 echo -e "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
 echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
-echo -e "| > WordPress Version: '${UNDERLINE}$NGINX_VERSION\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 0.5
@@ -66,7 +64,7 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-if [ "${SERVER_MEMORY}" \> "256" ]; then
+if (( "${SERVER_MEMORY}" =< "256" )); then
     echo -e "-| > Thanks for using AcidicNodes, starting WordPress (${WORDPRESS_INSTALL_VERSION})..."
 else
     echo -e "-| > Thanks for using AcidicNodes, starting WordPress (${WORDPRESS_INSTALL_VERSION}). Remember that performance may be slow as your server plan is not ultimate..."
@@ -77,8 +75,15 @@ echo
 
 sleep 1.5
 
-if [ ! -d "/home/container/webroot/wp-admin" ] || [ ! -d "/home/container/webroot/wp-content" ] || [ ! -d "/home/container/webroot/wp-includes" ] || [ ! -f "/home/container/webroot/wp-blog-header.php" ]; then
+if [ ! -d "/home/container/webroot/wp-admin" ] || [ ! -d "/home/container/webroot/wp-content" ] || [ ! -d "/home/container/webroot/wp-includes" ] || [ ! -f "/home/container/webroot/wp-blog-header.php" ] || [ ! -f "/home/container/webroot/wp-activate.php" ]; then
+    echo
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo
     echo -e "-| > ${LIGHT_RED} WordPress installation is broken.\e[24m"
+    echo
+    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo
+
     sleep 1.5
     exit 0
 fi
