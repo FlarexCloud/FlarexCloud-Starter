@@ -64,7 +64,7 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-if [ "${SERVER_MEMORY}" -lt "257" ]; then
+if [ "257" -lt "${SERVER_MEMORY}" ]; then
     echo -e "-| > Thanks for using AcidicNodes, starting WordPress (${WORDPRESS_INSTALL_VERSION})..."
 else
     echo -e "-| > Thanks for using AcidicNodes, starting WordPress (${WORDPRESS_INSTALL_VERSION}). Remember that performance may be slow as your server plan is not ultimate..."
