@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.3
+INSTALLER_VERSION=1.0.4
 PHP_VERSION=$PHP_VERSION
 
 NORMAL="\e[0m"
@@ -69,8 +69,10 @@ echo
 
 sleep 1.5
 
-#if [ "$PHP_VERSION" == "" ]; then
+#if [ "$PHP_VERSION" != "" ]; then
+#/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
 #else
+#/usr/sbin/php-fpm7 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
 #fi
-/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-/usr/sbin/nginx -c /home/container/nginx/nginx.conf
