@@ -75,6 +75,12 @@ echo
 
 sleep 1.5
 
+if [ ! -d "/home/container/webroot/wp-admin" ] || [ ! -d "/home/container/webroot/wp-content" ] || [ ! -d "/home/container/webroot/wp-includes" ] || [ ! -f "/home/container/webroot/wp-blog-header.php" ]; then
+    echo -e "-| > ${LIGHT_RED} WordPress installation is broken.\e[24m"
+    sleep 1.5
+    exit 0
+fi
+
 if [ "$PHP_MAJOR_VERSION" != "7" ]; then
     /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
     /usr/sbin/nginx -c /home/container/nginx/nginx.conf
