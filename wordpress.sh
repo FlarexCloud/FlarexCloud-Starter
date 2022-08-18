@@ -22,9 +22,8 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.3
-PHP_VERSION=$(php -v | awk -F "'" '{print $2}')
-WORDPRESS_VERSION=$(grep wp_version /home/container/webroot/wp-includes/version.php | awk -F "'" '{print $2}')
+INSTALLER_VERSION=1.0.4
+PHP_VERSION=$PHP_VERSION
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -42,8 +41,7 @@ WORDPRESS_INSTALL_VERSION=$1
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
 echo -e "| > PHP Version: '${UNDERLINE}${PHP_VERSION}\e[24m'"
-echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_VERSION}\e[24m'"
-echo -e "| > WordPress Version (Installation): '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
+echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 0.5
@@ -71,8 +69,10 @@ echo
 
 sleep 1.5
 
-#if [ "$PHP_VERSION" == "" ]; then
+#if [ "$PHP_VERSION" != "" ]; then
+#/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
 #else
+#/usr/sbin/php-fpm7 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+#/usr/sbin/nginx -c /home/container/nginx/nginx.conf
 #fi
-/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-/usr/sbin/nginx -c /home/container/nginx/nginx.conf
