@@ -22,8 +22,8 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.0
-WORDPRESS_VERSION=$(grep wp_version wp-includes/version.php | awk -F "'" '{print $2}')
+INSTALLER_VERSION=1.0.1
+WORDPRESS_VERSION=$(grep wp_version /mnt/server/webroot/wp-includes/version.php | awk -F "'" '{print $2}')
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
