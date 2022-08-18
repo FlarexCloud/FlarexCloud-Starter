@@ -22,8 +22,7 @@
 
 # || Start [📍] || #
 
-INSTALLER_VERSION=1.0.4
-PHP_VERSION=$PHP_VERSION
+INSTALLER_VERSION=1.0.5
 
 NORMAL="\e[0m"
 BOLD="\e[1m"
@@ -40,7 +39,7 @@ WORDPRESS_INSTALL_VERSION=$1
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
-echo -e "| > PHP Version: '${UNDERLINE}${PHP_VERSION}\e[24m'"
+echo -e "| > PHP Version: '${UNDERLINE}${phpversion();}\e[24m'"
 echo -e "| > WordPress Version: '${UNDERLINE}${WORDPRESS_INSTALL_VERSION}\e[24m'"
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
