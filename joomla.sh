@@ -84,10 +84,5 @@ if [ ! -d "/home/container/webroot/cli" ] || [ ! -d "/home/container/webroot/tem
     exit 0
 fi
 
-if [ "$PHP_MAJOR_VERSION" != "7" ]; then
-    /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-    /usr/sbin/nginx -c /home/container/nginx/nginx.conf
-else
-    /usr/sbin/php-fpm7 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-    /usr/sbin/nginx -c /home/container/nginx/nginx.conf
-fi
+/usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+/usr/sbin/nginx -c /home/container/nginx/nginx.conf
