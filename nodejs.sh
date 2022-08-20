@@ -280,6 +280,8 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
 elif [ "$APPLICATION" != "none" ]; then
     if [ "$SERVER_MEMORY" -eq "1024" ]; then
         CMD="node --max-old-space-size=768 ."
+    else
+        CMD="node ."
     fi
 fi
 
