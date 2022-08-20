@@ -71,7 +71,7 @@ echo
 
 sleep 1.5
 
-if [ ! -d "/home/container/webroot/" ] || [ ! -d "/home/container/webroot/" ] || [ ! -d "/home/container/webroot/" ] || [ ! -f "/home/container/webroot/index.php" ] || [ ! -f "/home/container/webroot/index.php" ]; then
+if [ ! -d "/home/container/webroot/core" ] || [ ! -d "/home/container/webroot/modules" ] || [ ! -d "/home/container/webroot/profiles" ] || [ ! -f "/home/container/webroot/update.php" ] || [ ! -f "/home/container/webroot/autoload.php" ]; then
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
