@@ -71,7 +71,7 @@ echo
 
 sleep 1.5
 
-if [ ! -d "/home/container/webroot/cli" ] || [ ! -d "/home/container/webroot/templates" ] || [ ! -d "/home/container/webroot/installation" ] || [ ! -f "/home/container/webroot/modules/mod_footer/mod_footer.php" ] || [ ! -f "/home/container/webroot/media/com_categories/joomla.asset" ]; then
+if [ ! -d "/home/container/webroot/cli" ] || [ ! -d "/home/container/webroot/templates" ] || [ ! -d "/home/container/webroot/installation" ] || [ ! -d "/home/container/webroot/modules" ]; then
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
