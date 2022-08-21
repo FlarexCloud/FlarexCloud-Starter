@@ -73,7 +73,7 @@ echo
 
 sleep 1.5
 
-if [ ! -d "/home/container/webroot/" ] || [ ! -d "/home/container/webroot/" ] || [ ! -d "/home/container/webroot/" ] || [ ! -f "/home/container/webroot/" ] || [ ! -f "/home/container/webroot/" ]; then
+if [ ! -d "/home/container/webroot/cache" ] || [ ! -d "/home/container/webroot/bin" ] || [ ! -d "/home/container/webroot/system" ] || [ ! -f "/home/container/webroot/now.json" ] || [ ! -f "/home/container/webroot/robots.txt" ]; then
     echo
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
