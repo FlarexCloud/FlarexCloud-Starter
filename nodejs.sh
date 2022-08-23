@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-const { exec } = require('child_process');
+# const { exec } = require('child_process');
 
 INSTALLER_VERSION=1.0.9
 NODEJS_VERSION=$(node -v)
