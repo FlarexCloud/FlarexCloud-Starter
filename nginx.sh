@@ -68,19 +68,6 @@ echo
 
 sleep 1.5
 
-if [ ! -d "/home/container/nginx" ] || [ ! -d "/home/container/php-fpm" ] || [ ! -d "/home/container/webroot/webroot" ]; then
-    echo
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
-    echo
-    echo -e "-| > ${LIGHT_RED} Nginx installation is broken.\e[24m"
-    echo
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
-    echo
-
-    sleep 1.5
-    exit 0
-fi
-
 if [ "$PHP_MAJOR_VERSION" != "7" ]; then
     /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
     /usr/sbin/nginx -c /home/container/nginx/nginx.conf
