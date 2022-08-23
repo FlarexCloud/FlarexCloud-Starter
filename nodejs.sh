@@ -279,7 +279,7 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
     echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
         exit 0
-elif [ "$APPLICATION" == "none" ]; then
+elif [ "$APPLICATION" != "none" ]; then
     if [ "$SERVER_MEMORY" -eq "1024" ]; then
         CMD="node --max-old-space-size=768 ."
     else
