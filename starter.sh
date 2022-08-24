@@ -64,6 +64,7 @@ terminal_mode() {
             eval "$CMD"
             sleep 0.2
             echo "container@acidicnodes:$ "
+            TMOUT=30
         fi
     done
 }
