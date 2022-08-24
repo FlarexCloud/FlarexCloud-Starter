@@ -26,7 +26,7 @@
 
 INSTALLER_VERSION=1.1.1
 DEBIAN_VERSION=$(cat /etc/debian_version)
-BASH VERSION=$(bash --version)
+BASH_VERSION=$(bash --version)
 GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
 PYTHON3_VERSION=$(python3 --version)
