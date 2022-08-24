@@ -24,7 +24,9 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=1.0.9
+INSTALLER_VERSION=1.1.0
+BASH VERSION=$(bash --version)
+GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
 PYTHON3_VERSION=$(python3 --version)
 NPM_VERSION=$(npm -v)
@@ -88,6 +90,8 @@ echo
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
+echo -e "| > Bash Version: '${UNDERLINE}${BASH_VERSION}\e[24m'"
+echo -e "| > Git Version: '${UNDERLINE}${GIT_VERSION}\e[24m'"
 echo -e "| > NodeJs Version: '${UNDERLINE}${NODE_VERSION}\e[24m'"
 echo -e "| > Python(3) Version: '${UNDERLINE}${PYTHON3_VERSION}\e[24m'"
 if [ "$NODEJS_VERSION" == "v8.17.0" ] || [ "$NODEJS_VERSION" == "v10.24.1" ] || [ "$NODEJS_VERSION" == "v11.15.0" ]; then
