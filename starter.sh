@@ -65,12 +65,7 @@ terminal_mode() {
             sleep 0.2
             echo "container@acidicnodes:$ "
 
-            if ! read -t 900 userinput && (($? > 128)); then
-                echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
-                echo -e "| > Closing Terminal Mode due to inactivity, you timed out."
-                echo -e "${LIGHT_RED}************************************************************${DEFAULT}" >&2
-                exit 1
-            fi
+            read -t 900 userinput | exit 0
         fi
     done
 }
