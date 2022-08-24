@@ -24,7 +24,8 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=1.1.0
+INSTALLER_VERSION=1.1.1
+DEBIAN_VERSION=$(cat /etc/debian_version)
 BASH VERSION=$(bash --version)
 GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
@@ -90,6 +91,7 @@ echo
 
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
+echo -e "| > Debian Version: '${UNDERLINE}${DEBIAN_VERSION}\e[24m'"
 echo -e "| > Bash Version: '${UNDERLINE}${BASH_VERSION}\e[24m'"
 echo -e "| > Git Version: '${UNDERLINE}${GIT_VERSION}\e[24m'"
 echo -e "| > NodeJs Version: '${UNDERLINE}${NODE_VERSION}\e[24m'"
