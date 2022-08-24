@@ -64,6 +64,7 @@ terminal_mode() {
             eval "$CMD"
             sleep 0.2
             echo "container@acidicnodes:$ "
+            read -t 900 userinput || exit 1
         fi
     done
 }
