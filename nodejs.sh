@@ -117,7 +117,7 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/development/starter.sh
+wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/starter.sh
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
