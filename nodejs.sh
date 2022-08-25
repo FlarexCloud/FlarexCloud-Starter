@@ -22,7 +22,7 @@
 
 # || Start [📍] || #
 
-# const { exec } = require('child_process');
+# const { exec } = require('child_process')
 
 INSTALLER_VERSION=1.1.1
 DEBIAN_VERSION=$(cat /etc/debian_version)
