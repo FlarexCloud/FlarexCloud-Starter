@@ -24,7 +24,7 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=1.1.1
+INSTALLER_VERSION=1.1.2
 DEBIAN_VERSION=$(cat /etc/debian_version)
 GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
@@ -153,7 +153,7 @@ fi
 bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
-    npm i yarn@latest
+    npm i yarn@latest && rm -rf package-lock.json
 fi
 
 if [ "$MANAGER" == "yarn" ]; then
@@ -285,8 +285,8 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
     echo
         exit 0
 elif [ "$APPLICATION" != "none" ]; then
-    if [ "$SERVER_MEMORY" -eq "1024" ]; then
-        CMD="node --max-old-space-size=768 ."
+    if [ "$APPLICATION" == "[ES]BrunoSobrino/TheMystic-Bot-MD" ]; then
+        CMD="node . --server"
     else
         CMD="node ."
     fi
