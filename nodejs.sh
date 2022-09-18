@@ -153,7 +153,7 @@ fi
 bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
-    npm i yarn@latest
+    npm i yarn@latest && rm -rf package-lock.json
 fi
 
 if [ "$MANAGER" == "yarn" ]; then
