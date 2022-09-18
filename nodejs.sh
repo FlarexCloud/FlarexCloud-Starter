@@ -285,8 +285,8 @@ elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt 
     echo
         exit 0
 elif [ "$APPLICATION" != "none" ]; then
-    if [ "$SERVER_MEMORY" -eq "1024" ]; then
-        CMD="node --max-old-space-size=768 ."
+    if [ "$APPLICATION" == "[ES]BrunoSobrino/TheMystic-Bot-MD" ]; then
+        CMD="node . --server"
     else
         CMD="node ."
     fi
