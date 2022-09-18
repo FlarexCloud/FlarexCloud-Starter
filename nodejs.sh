@@ -24,7 +24,7 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=1.1.2
+INSTALLER_VERSION=1.1.3
 DEBIAN_VERSION=$(cat /etc/debian_version)
 GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
@@ -153,7 +153,11 @@ fi
 bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$NODEJS_VERSION" != "v8.17.0" ] || [ "$NODEJS_VERSION" != "v10.24.1" ] || [ "$NODEJS_VERSION" != "v11.15.0" ]; then
-    npm i yarn@latest && rm -rf package-lock.json
+    npm i yarn@latest
+
+    if [ "$APPLICATION" == "none" ]; then
+        yarn add @adiwajshing/baileys
+    fi
 fi
 
 if [ "$MANAGER" == "yarn" ]; then
