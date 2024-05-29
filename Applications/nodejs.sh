@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
@@ -24,7 +24,7 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=1.1.3
+INSTALLER_VERSION=0.0.1
 DEBIAN_VERSION=$(cat /etc/debian_version)
 GIT_VERSION=$(git --version)
 NODEJS_VERSION=$(node -v)
