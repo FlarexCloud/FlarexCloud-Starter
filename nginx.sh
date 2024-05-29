@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
 
 # || Start [📍] || #
 
@@ -61,7 +61,7 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-echo -e "-| > Thanks for using AcidicNodes, starting Nginx..."
+echo -e "-| > Thanks for using FlarexCloud, starting Nginx..."
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo

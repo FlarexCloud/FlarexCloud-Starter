@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
 
 # || Start [📍] || #
 
@@ -50,13 +50,13 @@ terminal_mode() {
     echo -e "| > The terminal mode have been enabled. To exit, please just type in '${UNDERLINE}exit\e[24m'."
     echo -e "| > ${BOLD}WARNING! Terminal text editors, and long running processes won't work here.\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "\033[1m${YELLOW}container@acidicnodes:$\033[0m"
+    echo -e "\033[1m${YELLOW}container@flarexcloud:$\033[0m"
     # read -t 900 userinput || exit 1
     while true; do
-        read -p "container@acidicnodes:$ " CMD
+        read -p "container@flarexcloud:$ " CMD
         if [ "$CMD" == "exit" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
+            echo -e "| > Thanks for using FlarexCloud, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
             echo
@@ -64,7 +64,7 @@ terminal_mode() {
         else
             eval "$CMD"
             sleep 0.2
-            echo "container@acidicnodes:$ "
+            echo "container@flarexcloud:$ "
             # read -t 900 userinput || exit 1
         fi
     done

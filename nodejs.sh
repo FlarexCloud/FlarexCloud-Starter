@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
 
 # || Start [📍] || #
 
@@ -117,7 +117,7 @@ echo
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-wget -nv -O /tmp/start https://raw.githubusercontent.com/AcidicNodes/starter/main/starter.sh
+wget -nv -O /tmp/start https://raw.githubusercontent.com/FlarexCloud/starter/main/starter.sh
 echo
 echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
@@ -297,7 +297,7 @@ elif [ "$APPLICATION" != "none" ]; then
 fi
 
 if [ "$LOGGER" == "yes" ]; then
-    eval "$CMD | tee acidicnodes_debug_$(date +%d-%m-%Y_%H-%M-%S).log"
+    eval "$CMD | tee flarexcloud_debug_$(date +%d-%m-%Y_%H-%M-%S).log"
 else
     eval "$CMD"
 fi
