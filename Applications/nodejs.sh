@@ -139,7 +139,7 @@ elif [ "$APPLICATION" != "-(  WhatsApp Bots  )-" ] || [ "$APPLICATION" != "-(  D
     echo
 fi
 
-bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
+sh /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$NODE_VERSION" != "v8.17.0" ] || [ "$NODE_VERSION" != "v10.24.1" ] || [ "$NODE_VERSION" != "v11.15.0" ]; then
     npm i yarn@latest
