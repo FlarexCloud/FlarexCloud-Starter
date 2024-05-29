@@ -18,13 +18,13 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
+# ////////////////| FlarexCloud |//////////////// #
 
 # || Start [📍] || #
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=0.0.3
+INSTALLER_VERSION=0.0.4
 OS_VERSION=$(cat /etc/alpine-release)
 GIT_VERSION=$(git --version)
 NODE_VERSION=$(node -v)
