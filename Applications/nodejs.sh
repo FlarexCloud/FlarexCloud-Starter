@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
@@ -24,7 +24,7 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=0.0.5
+INSTALLER_VERSION=0.0.6
 OS_VERSION=$(cat /etc/alpine-release)
 GIT_VERSION=$(git --version)
 NODE_VERSION=$(node -v)
