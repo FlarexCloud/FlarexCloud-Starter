@@ -78,7 +78,8 @@ if [ "$TERMINAL" == "ask" ]; then
     read confirmation
     case $confirmation in
         [Yy]* ) terminal_mode;;
-    esac
+        * ) ;;
+esac
 elif [ "$TERMINAL" == "yes" ]; then
     terminal_mode
 fi
