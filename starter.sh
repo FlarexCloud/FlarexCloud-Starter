@@ -72,14 +72,14 @@ terminal_mode() {
 
 if [ "$TERMINAL" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > Would you like no enable the access to terminal mode? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
+    echo -e "-| > Would you like to enable access to terminal mode? [Enter ${UNDERLINE}yes${NORMAL} or ${UNDERLINE}no${NORMAL}]"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     read confirmation
     case $confirmation in
         [Yy]* ) terminal_mode;;
         * ) ;;
-esac
+    esac
 elif [ "$TERMINAL" == "yes" ]; then
     terminal_mode
 fi
