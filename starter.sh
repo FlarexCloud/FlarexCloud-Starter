@@ -58,7 +58,7 @@ terminal_mode() {
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "| > Thanks for using FlarexCloud, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+            # echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
             echo
             break
         else
