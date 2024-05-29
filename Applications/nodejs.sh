@@ -24,7 +24,7 @@
 
 # const { exec } = require('child_process');
 
-INSTALLER_VERSION=0.0.7
+INSTALLER_VERSION=0.0.8
 OS_VERSION=$(cat /etc/alpine-release)
 GIT_VERSION=$(git --version)
 NODE_VERSION=$(node -v)
@@ -107,6 +107,7 @@ fi
 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 wget -nv -O /tmp/start https://raw.githubusercontent.com/FlarexCloud/starter/main/starter.sh &> /dev/null
+chmod +x /tmp/start &> /dev/null
 
 sleep 1.5
 echo
