@@ -100,7 +100,7 @@ fi
 if [ -d .git ]; then
     if [ -f .git/config ]; then
         ORIGIN=$(git config --get remote.origin.url)
-        if [ ! -z "$ORIGIN" ] && [ "$AUTO_PULL" != "no" ]; then [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ];
+        if [ ! -z "$ORIGIN" ] && [ "$AUTO_PULL" != "no" ]; then [ -f package.json ] && [ "$AUTO_INSTALL" != "no" ]
             if [ "$AUTO_PULL" == "ask" ]; then
                 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
                 echo -e "-| > .git configuration have been detected."
