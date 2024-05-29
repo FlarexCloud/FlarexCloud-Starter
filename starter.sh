@@ -53,7 +53,7 @@ terminal_mode() {
     echo -e "\033[1m${YELLOW}container@flarexcloud:$\033[0m"
     # read -t 900 userinput || exit 1
     while true; do
-        read -p "container@flarexcloud:$ " CMD
+        read -r -p "container@flarexcloud:$ " CMD
         if [ "$CMD" == "exit" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "| > Thanks for using FlarexCloud, and it's Terminal Mode."
@@ -76,7 +76,7 @@ if [ "$TERMINAL" == "ask" ]; then
     echo -e "-| > Would you like to enable access to terminal mode? [Enter ${UNDERLINE}yes${NORMAL} or ${UNDERLINE}no${NORMAL}]"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    read confirmation
+    read -r -p confirmation
     case $confirmation in
         [Yy]* ) terminal_mode;;
         * ) ;;
@@ -108,7 +108,7 @@ if [ -d .git ]; then
                 echo -e "-| > Would you like to continue to pull from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
                 echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
                 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-                read confirmation
+                read -r -p confirmation
                 case $confirmation in
                     [Yy]* )
                         echo -e "*| > Pulling from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'..."
@@ -130,7 +130,7 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    read confirmation
+    read -r -p confirmation
     case $confirmation in
         [Yy]* )
             rm -rf ..?* .[!.]* *
