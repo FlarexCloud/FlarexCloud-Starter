@@ -112,18 +112,6 @@ chmod +x /tmp/start &> /dev/null
 sleep 1.5
 echo
 
-<<<<<<< HEAD:nodejs.sh
-
-echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-echo
-wget -nv -O /tmp/start https://raw.githubusercontent.com/FlarexCloud/Starter/development/starter.sh
-echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
-echo
-
-=======
->>>>>>> main:Applications/nodejs.sh
 if [ "$APPLICATION" == "none" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "-| > You have picked ${UNDERLINE}no application\e[24m!"
@@ -152,7 +140,7 @@ elif [ "$APPLICATION" != "-(  WhatsApp Bots  )-" ] || [ "$APPLICATION" != "-(  D
     echo
 fi
 
-sh /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
+bash /tmp/start "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
 
 if [ "$NODE_VERSION" != "v8.17.0" ] || [ "$NODE_VERSION" != "v10.24.1" ] || [ "$NODE_VERSION" != "v11.15.0" ]; then
     npm i yarn@latest
@@ -264,24 +252,6 @@ echo
 
 if [ "$APPLICATION" == "none" ]; then
     CMD="node $FILE"
-: <<'END_COMMENT'
-elif [ "$APPLICATION" == "Jareer12/DiscordBotPanel" ] && [ "$SERVER_MEMORY" -lt "2048" ]; then
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
-    echo
-    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > ${BOLD}WARNING! '${UNDERLINE}${APPLICATION}\e[24m' must have a minimum of '${UNDERLINE}2048MB\e[24m' of RAM in order for it to run!\e[21m${NORMAL}"
-    echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
-    echo
-        exit 0
-elif [ "$APPLICATION" != "none" ]; then
-    if [ "$APPLICATION" == "[ES]BrunoSobrino/TheMystic-Bot-MD" ]; then
-        CMD="node . --server"
-    else
-        CMD="node ."
-    fi
-END_COMMENT
 fi
 
 if [ "$LOGGER" == "yes" ]; then
