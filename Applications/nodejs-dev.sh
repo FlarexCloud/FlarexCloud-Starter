@@ -22,9 +22,10 @@
 
 # || Start [📍] || #
 
-# Prompt the user for their name
-echo "Please enter your name: "
-read name
+#!/bin/sh
 
-# Greet the user
-echo "Hello, $name! Welcome to the script."
+if [ -t 0 ]; then
+    echo "Running in interactive mode"
+else
+    echo "Running in non-interactive mode"
+fi
