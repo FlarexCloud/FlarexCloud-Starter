@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
@@ -29,3 +29,6 @@ if [ -t 0 ]; then
 else
     echo "Running in non-interactive mode"
 fi
+
+read -p "Please enter your name: " name
+echo "Hello, $name! Welcome to the script."
