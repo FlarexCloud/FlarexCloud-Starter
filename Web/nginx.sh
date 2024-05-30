@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
 
 # || Start [📍] || #
 
@@ -37,33 +37,33 @@ LIGHT_GREEN="\e[92m"
 LIGHT_RED="\e[91m"
 DEFAULT="\e[39m"
 
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
-echo -e "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
-echo -e "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
+echo "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
+echo "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 0.5
 echo
 
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo -e "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
-echo -e "| > Cluster: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
-echo -e "| > RAM: '${UNDERLINE}${SERVER_MEMORY}MB\e[24m'"
-echo -e "| > Local IPv4: '${UNDERLINE}${SERVER_IP}\e[24m'"
-echo -e "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
-echo -e "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
+echo "| > Cluster: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
+echo "| > RAM: '${UNDERLINE}${SERVER_MEMORY}MB\e[24m'"
+echo "| > Local IPv4: '${UNDERLINE}${SERVER_IP}\e[24m'"
+echo "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
+echo "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 1.5
 echo
 
 echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-echo -e "-| > Thanks for using AcidicNodes, starting Nginx..."
+echo "-| > Thanks for using FlarexCloud, starting Nginx..."
 echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
 sleep 1.5

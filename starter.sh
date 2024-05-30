@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| FlarexCloud |//////////////// #
 
 # || Start [📍] || #
 
@@ -50,21 +50,22 @@ terminal_mode() {
     echo -e "| > The terminal mode have been enabled. To exit, please just type in '${UNDERLINE}exit\e[24m'."
     echo -e "| > ${BOLD}WARNING! Terminal text editors, and long running processes won't work here.\e[21m${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "\033[1m${YELLOW}container@acidicnodes:$\033[0m"
+    echo -e "\033[1m${YELLOW}container@flarexcloud:$\033[0m"
     # read -t 900 userinput || exit 1
     while true; do
-        read -p "container@acidicnodes:$ " CMD
+        read -p "container@flarexcloud:$ " CMD
         if [ "$CMD" == "exit" ]; then
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-            echo -e "| > Thanks for using AcidicNodes, and it's Terminal Mode."
+            echo -e "| > Thanks for using FlarexCloud, and it's Terminal Mode."
             echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
             echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
             echo
             break
         else
-            eval "$CMD"
+            echo "CMD: $CMD"
+            # eval "$CMD"
             sleep 0.2
-            echo "container@acidicnodes:$ "
+            echo -e "container@flarexcloud:$ "
             # read -t 900 userinput || exit 1
         fi
     done
@@ -72,12 +73,13 @@ terminal_mode() {
 
 if [ "$TERMINAL" == "ask" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    echo -e "-| > Would you like no enable the access to terminal mode? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
+    echo -e "-| > Would you like to enable access to terminal mode? [Enter ${UNDERLINE}yes${NORMAL} or ${UNDERLINE}no${NORMAL}]"
     echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    read confirmation
+    read -p confirmation
     case $confirmation in
         [Yy]* ) terminal_mode;;
+        * ) ;;
     esac
 elif [ "$TERMINAL" == "yes" ]; then
     terminal_mode
@@ -106,16 +108,16 @@ if [ -d .git ]; then
                 echo -e "-| > Would you like to continue to pull from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
                 echo -e "-| > ${BOLD}Hint: You could hide this prompt by setting up a default value on the 'Startup' page.${NORMAL}"
                 echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-                read confirmation
+                read -p confirmation
                 case $confirmation in
                     [Yy]* )
-                        echo "*| > Pulling from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'..."
+                        echo -e "*| > Pulling from '${LIGHT_GREEN}${ORIGIN}${NORMAL}'..."
                         git pull --ff-only
                         ;;
                     * ) 
                         echo
                         echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-                        echo "*| > Skipped!"
+                        echo -e "*| > Skipped!"
                         echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
                         echo;;
                 esac
@@ -128,7 +130,7 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
     echo -e "| > ${BOLD}WARNING! By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes\e[24m or ${UNDERLINE}no\e[24m]"
     echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-    read confirmation
+    read -p confirmation
     case $confirmation in
         [Yy]* )
             rm -rf ..?* .[!.]* *
@@ -143,6 +145,6 @@ elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
                 git clone --single-branch --branch ${GIT_BRANCH} ${GIT_REPOSITORY} .
             fi
             ;;
-        * ) echo "*| > Skipped!";;
+        * ) echo -e "*| > Skipped!";;
     esac
 fi

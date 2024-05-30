@@ -2,7 +2,7 @@
 
 # /////////////////////////////////////////////////////////////////////////// #
 #                                                                             #
-#                      Copyright 2022 AcidicNodes                             #
+#                      Copyright 2024 FlarexCloud                             #
 #                                                                             #
 #   Licensed under the Apache License, Version 2.0 (the "License");           #
 #   you may not use this file except in compliance with the License.          #
@@ -18,7 +18,7 @@
 #                                                                             #
 # /////////////////////////////////////////////////////////////////////////// #
 
-# ////////////////| [🥽] | AcidicNodes | [⚗️] |//////////////// #
+# ////////////////| [🥽] | FlarexCloud | [⚗️] |//////////////// #
 
 # || Start [📍] || #
 
@@ -39,45 +39,45 @@ DEFAULT="\e[39m"
 
 DRUPAL_INSTALL_VERSION=$1
 
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo -e "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
-echo -e "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
-echo -e "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
-echo -e "| > Drupal Version: '${UNDERLINE}${DRUPAL_INSTALL_VERSION}\e[24m'"
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "| > Installer Version: '${UNDERLINE}${INSTALLER_VERSION}\e[24m'"
+echo "| > PHP Version: '${UNDERLINE}$PHP_VERSION\e[24m'"
+echo "| > PHP Major Version: '${UNDERLINE}$PHP_MAJOR_VERSION\e[24m'"
+echo "| > Drupal Version: '${UNDERLINE}${DRUPAL_INSTALL_VERSION}\e[24m'"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 0.5
 echo
 
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
-echo -e "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
-echo -e "| > Cluster: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
-echo -e "| > RAM: '${UNDERLINE}${SERVER_MEMORY}MB\e[24m'"
-echo -e "| > Local IPv4: '${UNDERLINE}${SERVER_IP}\e[24m'"
-echo -e "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
-echo -e "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
-echo -e "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
+echo "| > Time Zone: '${UNDERLINE}${TZ}\e[24m'"
+echo "| > Cluster: '${UNDERLINE}${P_SERVER_LOCATION}\e[24m'"
+echo "| > RAM: '${UNDERLINE}${SERVER_MEMORY}MB\e[24m'"
+echo "| > Local IPv4: '${UNDERLINE}${SERVER_IP}\e[24m'"
+echo "| > Primary Port: '${UNDERLINE}${SERVER_PORT}\e[24m'"
+echo "| > UUID: '${UNDERLINE}${P_SERVER_UUID}\e[24m'"
+echo "${LIGHT_MAGENTA}************************************************************${DEFAULT}"
 
 sleep 1.5
 echo
 
 echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
-echo -e "-| > Thanks for using AcidicNodes, starting Drupal (${DRUPAL_INSTALL_VERSION})..."
+echo "-| > Thanks for using FlarexCloud, starting Drupal (${DRUPAL_INSTALL_VERSION})..."
 echo
-echo -e "${LIGHT_GREEN}************************************************************${DEFAULT}"
+echo "${LIGHT_GREEN}************************************************************${DEFAULT}"
 echo
 
 sleep 1.5
 
 if [ ! -d "/home/container/webroot/core" ] || [ ! -d "/home/container/webroot/modules" ] || [ ! -d "/home/container/webroot/profiles" ] || [ ! -f "/home/container/webroot/update.php" ] || [ ! -f "/home/container/webroot/autoload.php" ]; then
     echo
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
-    echo -e "-| > ${LIGHT_RED} Drupal installation is broken.\e[24m"
+    echo "-| > ${LIGHT_RED} Drupal installation is broken.\e[24m"
     echo
-    echo -e "${LIGHT_RED}************************************************************${DEFAULT}"
+    echo "${LIGHT_RED}************************************************************${DEFAULT}"
     echo
 
     sleep 1.5
