@@ -196,6 +196,7 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     else
         $LIGHT_MAGENTA_LINE_BREAK
         WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+        WARNING_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager."
         $LIGHT_MAGENTA_LINE_BREAK
     fi
 fi
@@ -246,7 +247,7 @@ BLANK_LINE_SLEEP 0.5
 
 if [ "${PV_APPLICATION}" == "none" ]; then
     START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
-    $LIGHT_MAGENTA_LINE_BREAK
+    BLANK_LINE_SLEEP 0
 fi
 
 # Logs
