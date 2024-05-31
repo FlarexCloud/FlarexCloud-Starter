@@ -69,9 +69,6 @@ elif [ "$1" == "none" ]; then
     PV_GIT_TOKEN="$5"; shift
 fi
 
-# Config Variables
-DEFAULT_START_CMD="/usr/local/bin/${PV_PACKAGE_MANAGER} install"
-
 # Censorship Git Token
 if [ "${PV_GIT_TOKEN}" == "" ]; then
     PV_CENSORED_GIT_TOKEN=""; shift
@@ -149,8 +146,7 @@ $LIGHT_MAGENTA_LINE_BREAK
 BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
-wget -nv -O /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
-chmod +x /tmp/starter &> /dev/null
+curl -sS /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
 
 # Selected Application
 if [ "$PV_APPLICATION" == "none" ]; then
@@ -176,7 +172,7 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     $LIGHT_MAGENTA_LINE_BREAK
     DEFAULT_PIPE_ARROW "Please choose your favourite package manager: [Enter the integer]"
     DEFAULT_PIPE_ARROW
-    DEFAULT_PIPE_ARROW "1) npm ($NPM_VERSION) [RECOMMENDED]"
+    DEFAULT_PIPE_ARROW "1) npm ($NPM_VERSION)"
     DEFAULT_PIPE_ARROW
     DEFAULT_PIPE_ARROW "2) yarn ($YARN_VERSION) [RECOMMENDED]"
     DEFAULT_PIPE_ARROW
@@ -184,35 +180,40 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     $LIGHT_MAGENTA_LINE_BREAK
     if read -t 60 USER_CONFIRMATION; then
         case $USER_CONFIRMATION in
-            2 )
-                $LIGHT_MAGENTA_LINE_BREAK
-                PV_PACKAGE_MANAGER="yarn";;
-            * )
+            1 )
                 $LIGHT_MAGENTA_LINE_BREAK
                 PV_PACKAGE_MANAGER="npm";;
+                
+            * )
+                $LIGHT_MAGENTA_LINE_BREAK
+                PV_PACKAGE_MANAGER="yarn";;
         esac
         DEFAULT_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager..."
         $LIGHT_MAGENTA_LINE_BREAK
     else
         $LIGHT_MAGENTA_LINE_BREAK
         WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+        PV_PACKAGE_MANAGER="yarn"
         WARNING_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager."
         $LIGHT_MAGENTA_LINE_BREAK
     fi
 fi
 
 # Auto Install
+
+DEFAULT_START_CMD="/usr/local/bin/${PV_PACKAGE_MANAGER} install"
+
 if [ -f package.json ]; then
     if [ "${PV_AUTO_INSTALL}" == "ask" ]; then
         $LIGHT_MAGENTA_LINE_BREAK
-        DEFAULT_PIPE_ARROW "A package.json have been detected."
-        DEFAULT_PIPE_ARROW "Continue to install/upgrade from package.json? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
+        DEFAULT_PIPE_ARROW "A '${UNDERLINE}package.json${DEFAULT_FONT}' have been detected!"
+        DEFAULT_PIPE_ARROW "Continue to install/upgrade from '${UNDERLINE}package.json${DEFAULT_FONT}'? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
         HINT_PIPE_ARROW
         $LIGHT_MAGENTA_LINE_BREAK
         if read -t 60 USER_CONFIRMATION; then
             case $USER_CONFIRMATION in
                 [Yy]* )
-                    DEFAULT_PIPE_ARROW "We'll be installing/upgrading from package.json..."
+                    DEFAULT_PIPE_ARROW "We'll be installing/upgrading from '${UNDERLINE}package.json${DEFAULT_FONT}' using '${UNDERLINE}${PV_PACKAGE_MANAGER}${DEFAULT_FONT}'..."
                     $LIGHT_MAGENTA_LINE_BREAK
                     BLANK_LINE_SLEEP 0
                     eval ${DEFAULT_START_CMD};;
@@ -220,8 +221,6 @@ if [ -f package.json ]; then
                     WARNING_PIPE_ARROW "Skipped!"
                     $LIGHT_MAGENTA_LINE_BREAK;;
             esac
-            DEFAULT_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager..."
-            $LIGHT_MAGENTA_LINE_BREAK
         else
             $LIGHT_MAGENTA_LINE_BREAK
             WARNING_PIPE_ARROW "Skipping question due to user inactivity."
