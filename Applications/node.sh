@@ -149,8 +149,8 @@ $LIGHT_MAGENTA_LINE_BREAK
 BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
-# wget -nv -O /tmp/starter https://raw.githubusercontent.com/FlarexCloud/starter/main/starter.sh &> /dev/null
-# chmod +x /tmp/starter &> /dev/null
+wget -nv -O /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
+chmod +x /tmp/starter &> /dev/null
 
 # Selected Application
 if [ "$PV_APPLICATION" == "none" ]; then
@@ -168,8 +168,8 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-# bash /tmp/starter "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
-bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
+bash /tmp/starter "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
+# bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
 
 # Package Manager
 if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
