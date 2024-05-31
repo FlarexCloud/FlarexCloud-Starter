@@ -255,7 +255,7 @@ if [ "$APPLICATION" == "none" ]; then
 fi
 
 if [ "$LOGGER" == "yes" ]; then
-    eval "$CMD | tee flarexcloud_debug_$(date +%d-%m-%Y_%H-%M-%S).log"
+    eval "$CMD | tee flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log"
 else
     eval "$CMD"
 fi
