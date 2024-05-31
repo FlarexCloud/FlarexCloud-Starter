@@ -146,7 +146,7 @@ $LIGHT_MAGENTA_LINE_BREAK
 BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
-curl -sS /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
+curl -sS -o /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
 
 # Selected Application
 if [ "$PV_APPLICATION" == "none" ]; then
