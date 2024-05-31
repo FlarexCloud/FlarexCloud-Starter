@@ -147,6 +147,7 @@ BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
 curl -sS -o /tmp/starter https://raw.githubusercontent.com/FlarexCloud/Starter/main/starter.sh &> /dev/null
+chmod +x /tmp/starter &> /dev/null # Giving Permissions
 
 # Selected Application
 if [ "$PV_APPLICATION" == "none" ]; then
