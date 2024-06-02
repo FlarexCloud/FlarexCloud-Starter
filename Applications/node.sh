@@ -201,7 +201,6 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
 fi
 
 # Auto Install
-
 DEFAULT_START_CMD="/usr/local/bin/${PV_PACKAGE_MANAGER} install"
 
 if [ -f package.json ]; then
@@ -240,16 +239,6 @@ if [ -f package.json ]; then
     fi
 fi
 
-# Starting Application
-DEFAULT_PIPE_ARROW "Starting Application..."
-$LIGHT_MAGENTA_LINE_BREAK
-BLANK_LINE_SLEEP 0.5
-
-if [ "${PV_APPLICATION}" == "none" ]; then
-    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
-    BLANK_LINE_SLEEP 0
-fi
-
 # Logs
 logs_mode() {
     eval "${START_CMD} | tee flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log"
@@ -279,4 +268,14 @@ else
     WARNING_PIPE_ARROW "User disabled Logger (Logs)."
     $LIGHT_MAGENTA_LINE_BREAK
     eval "${START_CMD}"
+fi
+
+# Starting Application
+DEFAULT_PIPE_ARROW "Starting Application..."
+$LIGHT_MAGENTA_LINE_BREAK
+BLANK_LINE_SLEEP 0.5
+
+if [ "${PV_APPLICATION}" == "none" ]; then
+    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
+    BLANK_LINE_SLEEP 0
 fi
