@@ -165,7 +165,7 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-bash /tmp/starter "$GIT_REPOSITORY" "$GIT_BRANCH" "$GIT_TOKEN" $TERMINAL $AUTO_PULL
+bash /tmp/starter "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
 # bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
 
 # Package Manager
