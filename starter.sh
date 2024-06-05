@@ -47,9 +47,6 @@ DEFAULT_LINE_BREAK="echo -e ${DEFAULT_COLOUR}***********************************
 # Terminal Mode $
 TERMINAL_MODE_INTERFACE="echo -e ${LIGHT_YELLOW}${BOLD}container@flarexcloud:$ ${DEFAULT_FONT}${DEFAULT_COLOUR}"
 
-# General Variables
-HOME_DIRECTORY=/mnt/server
-
 # Position Variables
 GIT_REPOSITORY=$1
 GIT_TOKEN=$3
@@ -92,16 +89,11 @@ BLANK_LINE_SLEEP() {
 
 # Blocked CMD Patterns
 BLOCKED_CMD_PATTERNS=(
-    "curl -Lo /tmp/rootfs.tar.gz"
-    "apk add"
-    "apk del"
-    "apk update"
-    "apk upgrade"
-    "apk search"
-    "apk info"
-    "gotty -p"
+    "apk"
+    "gotty"
     "proot"
     "wget"
+    "curl"
     "scp"
     "ssh"
     "telnet"
@@ -219,7 +211,7 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-cd $HOME_DIRECTORY # Change directory to home directory
+cd # Change directory to home directory
 
 # Git
 git_timeout() {
