@@ -163,7 +163,7 @@ $LIGHT_MAGENTA_LINE_BREAK
 BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
-if [ "${DEVELOPMENT_MODE}" == "TRUE" ]; then
+if [ "${DEVELOPMENT_MODE}" == "FALSE" ]; then
     wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/starter.sh &> /dev/null
     chmod +x /tmp/starter &> /dev/null # Giving Permissions
 else
@@ -186,7 +186,7 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-if [ "${DEVELOPMENT_MODE}" == "TRUE" ]; then
+if [ "${DEVELOPMENT_MODE}" == "FALSE" ]; then
     bash /tmp/starter "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_TIMEOUT_MODE} ${PV_AUTO_PULL} # Executing remote script
 else
     bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_TIMEOUT_MODE} ${PV_AUTO_PULL} # Executing local script
