@@ -51,8 +51,9 @@ TERMINAL_MODE_INTERFACE="echo -e ${LIGHT_YELLOW}${BOLD}container@flarexcloud:$ $
 # Position Variables
 GIT_REPOSITORY=$1
 GIT_TOKEN=$3
-TERMINAL=$4
-AUTO_PULL=$5
+TERMINAL_MODE=$4
+TIMEOUT_MODE=$5
+AUTO_PULL=$6
 if [ "$2" != "" ]; then
     GIT_BRANCH=$2; shift
 elif [ "$2" == "" ]; then
@@ -87,60 +88,129 @@ BLANK_LINE_SLEEP() {
     echo
 }
 
+# Blocked CMD Patterns
+BLOCKED_CMD_PATTERNS=(
+    "curl -Lo /tmp/rootfs.tar.gz"
+    "apk add"
+    "apk del"
+    "apk update"
+    "apk upgrade"
+    "apk search"
+    "apk info"
+    "gotty -p"
+    "proot"
+    "wget"
+    "scp"
+    "ssh"
+    "telnet"
+    "ftp"
+    "nc"
+    "netcat"
+    "dd"
+    "mkfs"
+    "mount"
+    "umount"
+    "sudo"
+    "su"
+    "passwd"
+    "chown"
+    "chmod"
+    "chgrp"
+    "service"
+    "make"
+    "gcc"
+    "g++"
+    "javac"
+    "gem"
+    "perl"
+)
+
 # Start
 
 # Terminal Mode
+terminal_mode_timeout() {
+    local EXIT_REQUESTED=false
+    for BLOCKED_CMD in "${BLOCKED_CMD_PATTERNS[@]}"; do 
+        if [[ "$USER_CMD" == *"$BLOCKED_CMD"* ]]; then
+            WARNING_PIPE_ARROW "This CLI command it's not allowed on FlarexCloud."
+                return
+        fi
+    done
+
+    if [ "$USER_CMD" == "exit" ]; then
+        $LIGHT_MAGENTA_LINE_BREAK
+        DEFAULT_PIPE_ARROW "Thanks for using FlarexCloud Terminal Mode!"
+        $LIGHT_MAGENTA_LINE_BREAK
+            EXIT_REQUESTED=true
+    else [ "${USER_CMD}" != "exit" ]
+        eval $USER_CMD
+    fi
+
+    if $EXIT_REQUESTED; then
+        return 1
+    fi
+}
+
 terminal_mode() {
     DEFAULT_PIPE_ARROW "The terminal mode have been enabled. To exit, please just type in '${UNDERLINE}exit${DEFAULT_FONT}'."
     WARNING_PIPE_ARROW "Terminal text editors, and long running processes won't work here."
-    WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}90 seconds${DEFAULT_FONT}' terminal mode will be automatically disabled."
-
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}90 seconds${DEFAULT_FONT}' terminal mode will be automatically disabled."
+    fi
     $LIGHT_MAGENTA_LINE_BREAK
     BLANK_LINE_SLEEP 0
 
     while true; do
         $TERMINAL_MODE_INTERFACE
-        if read -t 90 USER_CMD; then
-            if [ "$USER_CMD" == "exit" ]; then
+        if [ "${TIMEOUT_MODE}" == "yes" ]; then
+            if read -t 90 USER_CMD; then
+                terminal_mode_timeout || break
+            else
                 $LIGHT_MAGENTA_LINE_BREAK
+                WARNING_PIPE_ARROW "Terminal mode has been disabled due to a timeout."
                 DEFAULT_PIPE_ARROW "Thanks for using FlarexCloud Terminal Mode!"
                 $LIGHT_MAGENTA_LINE_BREAK
                     break
-            elif [ "${USER_CMD}" != "exit" ]; then
-                eval $USER_CMD  
             fi
         else
-            $LIGHT_MAGENTA_LINE_BREAK
-            WARNING_PIPE_ARROW "Terminal mode has been disabled due to a timeout."
-            DEFAULT_PIPE_ARROW "Thanks for using FlarexCloud Terminal Mode!"
-            $LIGHT_MAGENTA_LINE_BREAK
-                break
+            read USER_CMD
+            terminal_mode_timeout || break
         fi
     done
 }
 
-if [ "${TERMINAL}" == "ask" ]; then
+terminal_mode_ask_timeout() {
+    case $USER_CONFIRMATION in
+        [Yy]* )
+            $LIGHT_MAGENTA_LINE_BREAK
+            terminal_mode;;
+        * ) 
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipped!"
+            $LIGHT_MAGENTA_LINE_BREAK;;
+    esac
+}
+
+if [ "${TERMINAL_MODE}" == "ask" ]; then
     DEFAULT_PIPE_ARROW "Would you like to enable access to ${LIGHT_YELLOW}Terminal Mode${DEFAULT_COLOUR}? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
     HINT_PIPE_ARROW
-    WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
-    $LIGHT_MAGENTA_LINE_BREAK
-    if read -t 60 USER_CONFIRMATION; then
-        case $USER_CONFIRMATION in
-            [Yy]* )
-                $LIGHT_MAGENTA_LINE_BREAK
-                terminal_mode;;
-            * ) 
-                $LIGHT_MAGENTA_LINE_BREAK
-                WARNING_PIPE_ARROW "Skipped!"
-                $LIGHT_MAGENTA_LINE_BREAK;;
-        esac
-    else
-        $LIGHT_MAGENTA_LINE_BREAK
-        WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-        $LIGHT_MAGENTA_LINE_BREAK
-            # break
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
     fi
-elif [ "${TERMINAL}" == "yes" ]; then
+    $LIGHT_MAGENTA_LINE_BREAK
+    if [ "${TIMEOUT_MODE}" == "yes" ]; then
+        if read -t 60 USER_CONFIRMATION; then
+            terminal_mode_ask_timeout
+        else
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+            $LIGHT_MAGENTA_LINE_BREAK
+        fi
+    else
+        read USER_CONFIRMATION
+        terminal_mode_ask_timeout
+    fi
+elif [ "${TERMINAL_MODE}" == "yes" ]; then
     terminal_mode
 else
     WARNING_PIPE_ARROW "User disabled Terminal Mode."
@@ -150,6 +220,38 @@ fi
 cd # Change directory to home directory
 
 # Git
+git_timeout() {
+    case $USER_CONFIRMATION in
+        [Yy]* )
+            DEFAULT_PIPE_ARROW "Pulling from '${LIGHT_GREEN}${ORIGIN}${DEFAULT_COLOUR}'..."
+            git pull --ff-only;;
+        * ) 
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipped!"
+            $LIGHT_MAGENTA_LINE_BREAK;;
+    esac
+}
+
+git_timeout_repository() {
+    case $USER_CONFIRMATION in
+        [Yy]* )
+            rm -rf ..?* .[!.]* *
+            $LIGHT_MAGENTA_LINE_BREAK
+            DEFAULT_PIPE_ARROW "${BOLD}/home/container${DEFAULT_FONT} have been wiped out."
+            DEFAULT_PIPE_ARROW "Cloning '${LIGHT_GREEN}${UNDERLINE}${GIT_BRANCH}${DEFAULT_FONT}${DEFAULT_COLOUR}' from '${LIGHT_GREEN}${UNDERLINE}${GIT_REPOSITORY}${DEFAULT_FONT}${DEFAULT_COLOUR}'."
+            $LIGHT_MAGENTA_LINE_BREAK
+            BLANK_LINE_SLEEP 0
+            if [ ! -z "$GIT_TOKEN" ]; then
+                git clone --single-branch --branch ${GIT_BRANCH} https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
+            else
+                git clone --single-branch --branch ${GIT_BRANCH} ${GIT_REPOSITORY} .
+            fi;;
+        * ) 
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipped!"
+            $LIGHT_MAGENTA_LINE_BREAK;;
+    esac
+}
 
 if [[ $GIT_REPOSITORY != *.git ]]; then
     GIT_REPOSITORY=${GIT_REPOSITORY}.git
@@ -163,24 +265,22 @@ if [ -d .git ]; then
                 $LIGHT_MAGENTA_LINE_BREAK
                 WARNING_PIPE_ARROW "A ${UNDERLINE}.git${DEFAULT_FONT} configuration have been detected!"
                 DEFAULT_PIPE_ARROW "Would you like to continue to pull from '${LIGHT_GREEN}${UNDERLINE}${ORIGIN}${DEFAULT_FONT}${DEFAULT_COLOUR}'? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
-                WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+                if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+                    WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+                fi
                 HINT_PIPE_ARROW
                 $LIGHT_MAGENTA_LINE_BREAK
-                if read -t 60 USER_CONFIRMATION; then
-                    case $USER_CONFIRMATION in
-                        [Yy]* )
-                            DEFAULT_PIPE_ARROW "Pulling from '${LIGHT_GREEN}${ORIGIN}${DEFAULT_COLOUR}'..."
-                            git pull --ff-only;;
-                        * ) 
-                            $LIGHT_MAGENTA_LINE_BREAK
-                            WARNING_PIPE_ARROW "Skipped!"
-                            $LIGHT_MAGENTA_LINE_BREAK;;
-                    esac
+                if [ "${TIMEOUT_MODE}" == "yes" ]; then
+                    if read -t 60 USER_CONFIRMATION; then
+                        git_timeout
+                    else
+                        $LIGHT_MAGENTA_LINE_BREAK
+                        WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+                        $LIGHT_MAGENTA_LINE_BREAK
+                    fi
                 else
-                    $LIGHT_MAGENTA_LINE_BREAK
-                    WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-                    $LIGHT_MAGENTA_LINE_BREAK
-                        # break
+                    read USER_CONFIRMATION
+                    git_timeout
                 fi
             else
                 git pull --ff-only ${GIT_REPOSITORY}
@@ -189,31 +289,20 @@ if [ -d .git ]; then
     fi
 elif [ ! -z "$GIT_REPOSITORY" ] && [ ! -z "$GIT_BRANCH" ]; then
     WARNING_PIPE_ARROW "By cloning a Git Repository, all existing files will be deleted. Continue? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
-    WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+    fi
     $LIGHT_MAGENTA_LINE_BREAK
-    if read -t 60 USER_CONFIRMATION; then
-        case $USER_CONFIRMATION in
-            [Yy]* )
-                rm -rf ..?* .[!.]* *
-                $LIGHT_MAGENTA_LINE_BREAK
-                DEFAULT_PIPE_ARROW "${BOLD}/home/container${DEFAULT_FONT} have been wiped out."
-                DEFAULT_PIPE_ARROW "Cloning '${LIGHT_GREEN}${UNDERLINE}${GIT_BRANCH}${DEFAULT_FONT}${DEFAULT_COLOUR}' from '${LIGHT_GREEN}${UNDERLINE}${GIT_REPOSITORY}${DEFAULT_FONT}${DEFAULT_COLOUR}'."
-                $LIGHT_MAGENTA_LINE_BREAK
-                BLANK_LINE_SLEEP 0
-                if [ ! -z "$GIT_TOKEN" ]; then
-                    git clone --single-branch --branch ${GIT_BRANCH} https://${GIT_TOKEN}@$(echo -e ${GIT_REPOSITORY} | cut -d/ -f3-) .
-                else
-                    git clone --single-branch --branch ${GIT_BRANCH} ${GIT_REPOSITORY} .
-                fi;;
-            * ) 
-                $LIGHT_MAGENTA_LINE_BREAK
-                WARNING_PIPE_ARROW "Skipped!"
-                $LIGHT_MAGENTA_LINE_BREAK;;
-        esac
+    if [ "${TIMEOUT_MODE}" == "yes" ]; then
+        if read -t 60 USER_CONFIRMATION; then
+            git_timeout_repository
+        else
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+            $LIGHT_MAGENTA_LINE_BREAK
+        fi
     else
-        $LIGHT_MAGENTA_LINE_BREAK
-        WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-        $LIGHT_MAGENTA_LINE_BREAK
-            # break
+        read USER_CONFIRMATION
+        git_timeout_repository
     fi
 fi

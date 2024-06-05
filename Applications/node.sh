@@ -20,8 +20,11 @@
 
 # ////////////////| FlarexCloud |//////////////// #
 
+# Development
+DEVELOPMENT_MODE="FALSE"
+
 # Variables
-SCRIPT_VERSION="v0.0.1-beta"
+SCRIPT_VERSION="v0.0.2-beta"
 OS_VERSION=v$(cat /etc/alpine-release)
 GIT_VERSION=v$(git --version | awk '{print $3}')
 NODE_VERSION=$(node --version)
@@ -58,7 +61,8 @@ PV_TERMINAL_MODE=$6
 PV_PACKAGE_MANAGER=$7
 PV_AUTO_INSTALL=$8
 PV_AUTO_PULL=$9
-PV_LOGGER=${10}
+PV_TIMEOUT_MODE=${10}
+PV_LOGGER=${11}
 if [ "$1" != "none" ]; then
     PV_GIT_REPOSITORY=""
     PV_GIT_BRANCH=""
@@ -108,8 +112,20 @@ BLANK_LINE_SLEEP() {
 }
 
 # Start
-
 clear
+
+# Banner
+
+BLANK_LINE_SLEEP 0
+
+echo -e "${LIGHT_MAGENTA}   ███████╗██╗░░░░░░█████╗░██████╗░███████╗██╗░░██╗░█████╗░██╗░░░░░░█████╗░██╗░░░██╗██████╗░${DEFAULT_COLOUR}"
+echo -e "${LIGHT_MAGENTA}   ██╔════╝██║░░░░░██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝██╔══██╗██║░░░░░██╔══██╗██║░░░██║██╔══██╗${DEFAULT_COLOUR}"
+echo -e "${LIGHT_MAGENTA}   █████╗░░██║░░░░░███████║██████╔╝█████╗░░░╚███╔╝░██║░░╚═╝██║░░░░░██║░░██║██║░░░██║██║░░██║${DEFAULT_COLOUR}"
+echo -e "${LIGHT_MAGENTA}   ██╔══╝░░██║░░░░░██╔══██║██╔══██╗██╔══╝░░░██╔██╗░██║░░██╗██║░░░░░██║░░██║██║░░░██║██║░░██║${DEFAULT_COLOUR}"
+echo -e "${LIGHT_MAGENTA}   ██║░░░░░███████╗██║░░██║██║░░██║███████╗██╔╝╚██╗╚█████╔╝███████╗╚█████╔╝╚██████╔╝██████╔╝${DEFAULT_COLOUR}"
+echo -e "${LIGHT_MAGENTA}   ╚═╝░░░░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝░╚════╝░╚══════╝░╚════╝░░╚═════╝░╚═════╝░${DEFAULT_COLOUR}"
+
+BLANK_LINE_SLEEP 2.5
 
 # Show Details of Server Configuration
 BLANK_LINE_SLEEP 0
@@ -128,7 +144,7 @@ UNDERLINE_VARIABLE_PIPE_ARROW "Server UUID" "${P_SERVER_UUID}"
 
 $LIGHT_MAGENTA_LINE_BREAK
 
-BLANK_LINE_SLEEP 1
+BLANK_LINE_SLEEP 0
 
 UNDERLINE_VARIABLE_PIPE_ARROW "Application" "${PV_APPLICATION}"
 UNDERLINE_VARIABLE_PIPE_ARROW "Starter File" "${PV_STARTER_FILE}"
@@ -139,6 +155,7 @@ UNDERLINE_VARIABLE_PIPE_ARROW "Package Manager" "${PV_PACKAGE_MANAGER}"
 UNDERLINE_VARIABLE_PIPE_ARROW "Terminal Mode" "${PV_TERMINAL_MODE}"
 UNDERLINE_VARIABLE_PIPE_ARROW "Auto Install" "${PV_AUTO_INSTALL}"
 UNDERLINE_VARIABLE_PIPE_ARROW "Auto Pull" "${PV_AUTO_PULL}"
+UNDERLINE_VARIABLE_PIPE_ARROW "Timeout Mode" "${PV_TIMEOUT_MODE}"
 UNDERLINE_VARIABLE_PIPE_ARROW "Logs" "${PV_LOGGER}"
 
 $LIGHT_MAGENTA_LINE_BREAK
@@ -146,8 +163,12 @@ $LIGHT_MAGENTA_LINE_BREAK
 BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
-wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/starter.sh &> /dev/null
-chmod +x /tmp/starter &> /dev/null # Giving Permissions
+if [ "${DEVELOPMENT_MODE}" == "TRUE" ]; then
+    wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/starter.sh &> /dev/null
+    chmod +x /tmp/starter &> /dev/null # Giving Permissions
+else
+    chmod +x /tmp/starter &> /dev/null # Giving Permissions
+fi
 
 # Selected Application
 if [ "$PV_APPLICATION" == "none" ]; then
@@ -165,10 +186,26 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-bash /tmp/starter "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
-# bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_AUTO_PULL}
+if [ "${DEVELOPMENT_MODE}" == "TRUE" ]; then
+    bash /tmp/starter "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_TIMEOUT_MODE} ${PV_AUTO_PULL} # Executing remote script
+else
+    bash starter.sh "${PV_GIT_REPOSITORY}" "${PV_GIT_BRANCH}" "${PV_GIT_TOKEN}" ${PV_TERMINAL_MODE} ${PV_TIMEOUT_MODE} ${PV_AUTO_PULL} # Executing local script
+fi
 
 # Package Manager
+package_manager_timeout() {
+    case $USER_CONFIRMATION in
+        1 )
+            $LIGHT_MAGENTA_LINE_BREAK
+            PV_PACKAGE_MANAGER="npm";;
+        * )
+            $LIGHT_MAGENTA_LINE_BREAK
+            PV_PACKAGE_MANAGER="yarn";;
+    esac
+    DEFAULT_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager..."
+    $LIGHT_MAGENTA_LINE_BREAK
+}
+
 if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     $LIGHT_MAGENTA_LINE_BREAK
     DEFAULT_PIPE_ARROW "Please choose your favourite package manager: [Enter the integer]"
@@ -178,30 +215,41 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     DEFAULT_PIPE_ARROW "2) yarn ($YARN_VERSION) [RECOMMENDED]"
     DEFAULT_PIPE_ARROW
     HINT_PIPE_ARROW
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+    fi
     $LIGHT_MAGENTA_LINE_BREAK
-    if read -t 60 USER_CONFIRMATION; then
-        case $USER_CONFIRMATION in
-            1 )
-                $LIGHT_MAGENTA_LINE_BREAK
-                PV_PACKAGE_MANAGER="npm";;
-                
-            * )
-                $LIGHT_MAGENTA_LINE_BREAK
-                PV_PACKAGE_MANAGER="yarn";;
-        esac
-        DEFAULT_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager..."
-        $LIGHT_MAGENTA_LINE_BREAK
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        if read -t 60 USER_CONFIRMATION; then
+            package_manager_timeout
+        else
+            $LIGHT_MAGENTA_LINE_BREAK
+            WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+            PV_PACKAGE_MANAGER="yarn"
+            WARNING_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager."
+            $LIGHT_MAGENTA_LINE_BREAK
+        fi
     else
-        $LIGHT_MAGENTA_LINE_BREAK
-        WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-        PV_PACKAGE_MANAGER="yarn"
-        WARNING_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager."
-        $LIGHT_MAGENTA_LINE_BREAK
+        read USER_CONFIRMATION
+        package_manager_timeout
     fi
 fi
 
 # Auto Install
 DEFAULT_START_CMD="/usr/local/bin/${PV_PACKAGE_MANAGER} install"
+
+auto_install_timeout() {
+    case $USER_CONFIRMATION in
+        [Yy]* )
+            DEFAULT_PIPE_ARROW "We'll be installing/upgrading from '${UNDERLINE}package.json${DEFAULT_FONT}' using '${UNDERLINE}${PV_PACKAGE_MANAGER}${DEFAULT_FONT}'..."
+            $LIGHT_MAGENTA_LINE_BREAK
+            BLANK_LINE_SLEEP 0
+            eval ${DEFAULT_START_CMD};;
+        * )
+            WARNING_PIPE_ARROW "Skipped!"
+            $LIGHT_MAGENTA_LINE_BREAK;;
+    esac
+}
 
 if [ -f package.json ]; then
     if [ "${PV_AUTO_INSTALL}" == "ask" ]; then
@@ -209,22 +257,21 @@ if [ -f package.json ]; then
         DEFAULT_PIPE_ARROW "A '${UNDERLINE}package.json${DEFAULT_FONT}' have been detected!"
         DEFAULT_PIPE_ARROW "Continue to install/upgrade from '${UNDERLINE}package.json${DEFAULT_FONT}'? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
         HINT_PIPE_ARROW
+        if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+            WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+        fi
         $LIGHT_MAGENTA_LINE_BREAK
-        if read -t 60 USER_CONFIRMATION; then
-            case $USER_CONFIRMATION in
-                [Yy]* )
-                    DEFAULT_PIPE_ARROW "We'll be installing/upgrading from '${UNDERLINE}package.json${DEFAULT_FONT}' using '${UNDERLINE}${PV_PACKAGE_MANAGER}${DEFAULT_FONT}'..."
-                    $LIGHT_MAGENTA_LINE_BREAK
-                    BLANK_LINE_SLEEP 0
-                    eval ${DEFAULT_START_CMD};;
-                * )
-                    WARNING_PIPE_ARROW "Skipped!"
-                    $LIGHT_MAGENTA_LINE_BREAK;;
-            esac
+        if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+            if read -t 60 USER_CONFIRMATION; then
+                auto_install_timeout
+            else
+                $LIGHT_MAGENTA_LINE_BREAK
+                WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+                $LIGHT_MAGENTA_LINE_BREAK
+            fi
         else
-            $LIGHT_MAGENTA_LINE_BREAK
-            WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-            $LIGHT_MAGENTA_LINE_BREAK
+            read USER_CONFIRMATION
+            auto_install_timeout
         fi
     elif [ "${PV_AUTO_INSTALL}" == "yes" ]; then
         BLANK_LINE_SLEEP 0
@@ -241,26 +288,37 @@ fi
 
 # Logs
 logs_mode() {
-    eval "${START_CMD} | tee flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log"
+    ${START_CMD} 2>&1 | tee flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log
+}
+
+logs_mode_timeout() {
+    case $USER_CONFIRMATION in
+        [Yy]* )
+            logs_mode;;
+        * ) 
+            WARNING_PIPE_ARROW "Skipped!"
+            $LIGHT_MAGENTA_LINE_BREAK;;
+    esac
 }
 
 if [ "${PV_LOGGER}" == "ask" ]; then
     DEFAULT_PIPE_ARROW "Would you like to enable logs for better debugging? [Enter ${UNDERLINE}yes${DEFAULT_FONT} or ${UNDERLINE}no${DEFAULT_FONT}]"
     HINT_PIPE_ARROW
-    WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        WARNING_PIPE_ARROW "Be aware that after '${UNDERLINE}60 seconds${DEFAULT_FONT}' the question will be skipped."
+    fi
     $LIGHT_MAGENTA_LINE_BREAK
-    if read -t 60 USER_CONFIRMATION; then
-        case $USER_CONFIRMATION in
-            [Yy]* )
-                logs_mode;;
-            * ) 
-                WARNING_PIPE_ARROW "Skipped!"
-                $LIGHT_MAGENTA_LINE_BREAK;;
-        esac
+    if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
+        if read -t 60 USER_CONFIRMATION; then
+            logs_mode_timeout
+        else
+            WARNING_PIPE_ARROW "Skipping question due to user inactivity."
+            $LIGHT_MAGENTA_LINE_BREAK
+                # break
+        fi
     else
-        WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-        $LIGHT_MAGENTA_LINE_BREAK
-            # break
+        read USER_CONFIRMATION
+        logs_mode_timeout
     fi
 elif [ "${PV_LOGGER}" == "yes" ]; then
     logs_mode
@@ -271,9 +329,15 @@ else
 fi
 
 # Starting Application
-DEFAULT_PIPE_ARROW "Starting Application..."
-$LIGHT_MAGENTA_LINE_BREAK
-BLANK_LINE_SLEEP 0.5
+if [ ${PV_APPLICATION} == "none" ]; then
+    DEFAULT_PIPE_ARROW "Starting Application..."
+    $LIGHT_MAGENTA_LINE_BREAK
+    BLANK_LINE_SLEEP 0.5
+else
+    DEFAULT_PIPE_ARROW "Starting Application '${UNDERLINE}${PV_APPLICATION}${DEFAULT_FONT}'..."
+    $LIGHT_MAGENTA_LINE_BREAK
+    BLANK_LINE_SLEEP 0.5
+fi
 
 if [ "${PV_APPLICATION}" == "none" ]; then
     START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
