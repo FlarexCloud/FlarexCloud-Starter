@@ -45,8 +45,10 @@ LIGHT_RED_LINE_BREAK="echo -e ${LIGHT_RED}**************************************
 DEFAULT_LINE_BREAK="echo -e ${DEFAULT_COLOUR}************************************************************${DEFAULT_COLOUR}"
 
 # Terminal Mode $
-
 TERMINAL_MODE_INTERFACE="echo -e ${LIGHT_YELLOW}${BOLD}container@flarexcloud:$ ${DEFAULT_FONT}${DEFAULT_COLOUR}"
+
+# General Variables
+HOME_DIRECTORY=/mnt/server
 
 # Position Variables
 GIT_REPOSITORY=$1
@@ -217,7 +219,7 @@ else
     $LIGHT_MAGENTA_LINE_BREAK
 fi
 
-cd # Change directory to home directory
+cd $HOME_DIRECTORY # Change directory to home directory
 
 # Git
 git_timeout() {
