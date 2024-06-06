@@ -24,7 +24,7 @@
 DEVELOPMENT_MODE="FALSE"
 
 # Variables
-SCRIPT_VERSION="v0.0.2-beta"
+SCRIPT_VERSION="v0.0.3-beta"
 OS_VERSION=v$(cat /etc/alpine-release)
 GIT_VERSION=v$(git --version | awk '{print $3}')
 NODE_VERSION=$(node --version)
@@ -286,9 +286,15 @@ if [ -f package.json ]; then
     fi
 fi
 
+# Start Application
+if [ "${PV_APPLICATION}" == "none" ]; then
+    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
+    BLANK_LINE_SLEEP 0
+fi
+
 # Logs
 logs_mode() {
-    ${START_CMD} 2>&1 | tee flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log
+    ${START_CMD} 2>&1 | tee "flarexcloud_logs_$(date +%d-%m-%Y_%H-%M-%S).log"
 }
 
 logs_mode_timeout() {
@@ -337,9 +343,4 @@ else
     DEFAULT_PIPE_ARROW "Starting Application '${UNDERLINE}${PV_APPLICATION}${DEFAULT_FONT}'..."
     $LIGHT_MAGENTA_LINE_BREAK
     BLANK_LINE_SLEEP 0.5
-fi
-
-if [ "${PV_APPLICATION}" == "none" ]; then
-    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
-    BLANK_LINE_SLEEP 0
 fi
