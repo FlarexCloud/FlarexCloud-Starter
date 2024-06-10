@@ -24,7 +24,7 @@
 DEVELOPMENT_MODE="FALSE"
 
 # Variables
-SCRIPT_VERSION="v0.0.3-beta"
+SCRIPT_VERSION="v0.0.4-beta"
 OS_VERSION=v$(cat /etc/alpine-release)
 GIT_VERSION=v$(git --version | awk '{print $3}')
 NODE_VERSION=$(node --version)
@@ -167,7 +167,7 @@ if [ "${DEVELOPMENT_MODE}" == "FALSE" ]; then
     wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/starter.sh &> /dev/null
     chmod +x /tmp/starter &> /dev/null # Giving Permissions
 else
-    chmod +x /tmp/starter &> /dev/null # Giving Permissions
+    chmod +x starter.sh &> /dev/null # Giving Permissions
 fi
 
 # Selected Application
@@ -288,8 +288,10 @@ fi
 
 # Start Application
 if [ "${PV_APPLICATION}" == "none" ]; then
-    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"
+    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"; shift
     BLANK_LINE_SLEEP 0
+else
+    START_CMD="/usr/local/bin/node ."; shift
 fi
 
 # Logs
@@ -300,10 +302,12 @@ logs_mode() {
 logs_mode_timeout() {
     case $USER_CONFIRMATION in
         [Yy]* )
-            logs_mode;;
+            logs_mode
+            eval "${START_CMD}";;
         * ) 
             WARNING_PIPE_ARROW "Skipped!"
-            $LIGHT_MAGENTA_LINE_BREAK;;
+            $LIGHT_MAGENTA_LINE_BREAK
+            eval "${START_CMD}";;
     esac
 }
 
