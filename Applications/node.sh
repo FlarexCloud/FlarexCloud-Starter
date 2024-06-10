@@ -324,7 +324,6 @@ if [ "${PV_LOGGER}" == "ask" ]; then
         else
             WARNING_PIPE_ARROW "Skipping question due to user inactivity."
             $LIGHT_MAGENTA_LINE_BREAK
-                # break
         fi
     else
         read USER_CONFIRMATION
