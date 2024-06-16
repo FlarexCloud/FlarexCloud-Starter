@@ -24,7 +24,7 @@
 DEVELOPMENT_MODE="FALSE"
 
 # Variables
-SCRIPT_VERSION="v0.0.4-beta"
+SCRIPT_VERSION="v0.0.5-beta"
 OS_VERSION=v$(cat /etc/alpine-release)
 GIT_VERSION=v$(git --version | awk '{print $3}')
 NODE_VERSION=$(node --version)
@@ -287,7 +287,10 @@ if [ -f package.json ]; then
 fi
 
 # Start Application
-if [ "${PV_APPLICATION}" == "none" ]; then
+if [ "${PV_APPLICATION}" == "none" && "${PV_STARTER_FILE}" == "" ]; then
+    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"; shift
+    BLANK_LINE_SLEEP 0
+elif [ "${PV_APPLICATION}" == "none" ]; then
     START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"; shift
     BLANK_LINE_SLEEP 0
 else
