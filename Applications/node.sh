@@ -287,8 +287,8 @@ if [ -f package.json ]; then
 fi
 
 # Start Application
-if [ "${PV_APPLICATION}" == "none" && "${PV_STARTER_FILE}" == "" ]; then
-    START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"; shift
+if [ "${PV_APPLICATION}" == "none" ] && [ "${PV_STARTER_FILE}" == "" ]; then
+    START_CMD="/usr/local/bin/node ."; shift
     BLANK_LINE_SLEEP 0
 elif [ "${PV_APPLICATION}" == "none" ]; then
     START_CMD="/usr/local/bin/node ${PV_STARTER_FILE}"; shift
