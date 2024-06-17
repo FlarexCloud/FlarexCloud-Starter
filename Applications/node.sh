@@ -181,7 +181,7 @@ elif [ "$PV_APPLICATION" == "-(  WhatsApp Bots  )-" ] || [ "$PV_APPLICATION" == 
         exit 1
 else
     WARNING_PIPE_ARROW "Do not forget to reinstall your server in order for '${UNDERLINE}${PV_APPLICATION}${DEFAULT_FONT}' to work."
-    DEFAULT_PIPE_ARROW "Remember to take a look at our Discord Server (${LIGHT_MAGENTA}${BOLD} https://discord.flarex.cloud ${DEFAULT_FONT}${DEFAULT_COLOUR}) and at our Knowledgebase (${LIGHT_MAGENTA}${BOLD} https://docs.flarex.cloud ${DEFAULT_FONT}${DEFAULT_COLOUR})"
+    DEFAULT_PIPE_ARROW "Remember to take a look at our Discord Server (${LIGHT_MAGENTA}${BOLD} https://discord.flarex.cloud ${DEFAULT_FONT}${DEFAULT_COLOUR}) and at our Knowledgebase (${LIGHT_MAGENTA}${BOLD} https://kb.flarex.cloud ${DEFAULT_FONT}${DEFAULT_COLOUR})"
     DEFAULT_PIPE_ARROW "Just in case you need help setting up '${UNDERLINE}${PV_APPLICATION}${DEFAULT_FONT}'!"
     $LIGHT_MAGENTA_LINE_BREAK
 fi
