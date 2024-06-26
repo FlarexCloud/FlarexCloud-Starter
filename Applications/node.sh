@@ -197,10 +197,10 @@ package_manager_timeout() {
     case $USER_CONFIRMATION in
         1 )
             $LIGHT_MAGENTA_LINE_BREAK
-            PV_PACKAGE_MANAGER="npm";;
+            PV_PACKAGE_MANAGER="yarn";;
         * )
             $LIGHT_MAGENTA_LINE_BREAK
-            PV_PACKAGE_MANAGER="yarn";;
+            PV_PACKAGE_MANAGER="npm";;
     esac
     DEFAULT_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager..."
     $LIGHT_MAGENTA_LINE_BREAK
@@ -210,9 +210,9 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
     $LIGHT_MAGENTA_LINE_BREAK
     DEFAULT_PIPE_ARROW "Please choose your favourite package manager: [Enter the integer]"
     DEFAULT_PIPE_ARROW
-    DEFAULT_PIPE_ARROW "1) npm ($NPM_VERSION)"
+    DEFAULT_PIPE_ARROW "1) yarn ($YARN_VERSION)"
     DEFAULT_PIPE_ARROW
-    DEFAULT_PIPE_ARROW "2) yarn ($YARN_VERSION) [RECOMMENDED]"
+    DEFAULT_PIPE_ARROW "2) npm ($NPM_VERSION) [RECOMMENDED]"
     DEFAULT_PIPE_ARROW
     HINT_PIPE_ARROW
     if [ "${PV_TIMEOUT_MODE}" == "yes" ]; then
@@ -225,7 +225,7 @@ if [ "${PV_PACKAGE_MANAGER}" == "ask" ]; then
         else
             $LIGHT_MAGENTA_LINE_BREAK
             WARNING_PIPE_ARROW "Skipping question due to user inactivity."
-            PV_PACKAGE_MANAGER="yarn"
+            PV_PACKAGE_MANAGER="npm"
             WARNING_PIPE_ARROW "Using ${PV_PACKAGE_MANAGER} as the Package Manager."
             $LIGHT_MAGENTA_LINE_BREAK
         fi
