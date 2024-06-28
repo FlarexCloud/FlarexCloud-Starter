@@ -24,7 +24,7 @@
 DEVELOPMENT_MODE="FALSE"
 
 # Variables
-SCRIPT_VERSION="v0.0.5-beta"
+SCRIPT_VERSION="v0.0.6-beta"
 OS_VERSION=v$(cat /etc/alpine-release)
 GIT_VERSION=v$(git --version | awk '{print $3}')
 NODE_VERSION=$(node --version)
@@ -164,7 +164,7 @@ BLANK_LINE_SLEEP 1.5
 
 # Get Starter File
 if [ "${DEVELOPMENT_MODE}" == "FALSE" ]; then
-    wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/starter.sh &> /dev/null
+    wget -qO /tmp/starter https://raw.githubusercontent.com/FlarexCloud/FlarexCloud-Starter/main/Applications/node-starter.sh &> /dev/null
     chmod +x /tmp/starter &> /dev/null # Giving Permissions
 else
     chmod +x starter.sh &> /dev/null # Giving Permissions
